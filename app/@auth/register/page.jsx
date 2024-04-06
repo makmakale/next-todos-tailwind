@@ -2,20 +2,16 @@
 import {Button} from "@/components/ui/button"
 import CardWrapper from "@/components/Auth/CardWrapper";
 import {useRouter} from "next/navigation";
-import {signIn} from "next-auth/react";
 import {useState, useTransition} from "react";
-import {LoginSchema, RegisterSchema} from "@/lib/form/validation";
+import {RegisterSchema} from "@/lib/form/validation";
 import Form from "@/components/Formik/Form";
 import FormMessage from "@/components/Formik/FormMessage";
 import FormField from "@/components/Formik/FormField";
+import {createUser} from "@/lib/actions/users";
 
 const initialValues = {
   username: '',
   password: ''
-}
-
-const createUser = async () => {
-  return {success: true}
 }
 
 export default function Page() {
@@ -31,7 +27,7 @@ export default function Page() {
       setSubmitting(false)
 
       if (success) {
-        router.push('/auth/login')
+        router.push('/')
       } else {
         setError(error)
       }
@@ -43,7 +39,7 @@ export default function Page() {
       <CardWrapper
         headerLabel="Create an account"
         backButtonLabel="Already have an account?"
-        backButtonHref="/auth/login"
+        backButtonHref="/"
       >
         <Form
           initialValues={initialValues}

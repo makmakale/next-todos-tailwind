@@ -12,7 +12,7 @@ const Footer = () => {
 
       <div>
         &copy; 2024 Powered by:
-        <Link href="https://makmakale.github.io/portfolio/" className="ml-1 hover:underline">MakMakAle</Link>
+        <Link href="https://makmakale.github.io/portfolio/" className="ml-1 underline">MakMakAle</Link>
       </div>
 
       <div>

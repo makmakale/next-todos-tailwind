@@ -36,8 +36,12 @@ const UserMenu = ({user = {}}) => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
           <div class="flex flex-col space-y-1">
-            <p class="text-sm font-medium leading-none">shadcn</p>
-            <p class="text-xs leading-none text-muted-foreground">m@example.com</p>
+            <p class="text-sm font-medium leading-none">
+              {user.name}
+            </p>
+            <p class="text-xs leading-none text-muted-foreground">
+              {user.email}
+            </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator/>
@@ -45,7 +49,7 @@ const UserMenu = ({user = {}}) => {
         <DropdownMenuItem>My Tasks</DropdownMenuItem>
         <DropdownMenuSeparator/>
         <DropdownMenuItem onClick={() => signOut()}>
-          <LogOut className="mr-2"/> Logout
+          <LogOut size={16} className="mr-2"/> Logout
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

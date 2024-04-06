@@ -23,12 +23,15 @@ export default function Page() {
     setError('')
 
     startTransition(async () => {
-      const res = await signIn('credentials', {...values, redirect: false})
+      const res = await signIn('credentials', {
+        ...values,
+        redirect: false
+      })
       setSubmitting(false)
 
       if (res.ok) {
         router.replace('/')
-        router.push()
+        router.refresh()
       } else {
         if (res.error === 'CredentialsSignin') {
           setError('Incorrect username or password ')
@@ -44,7 +47,7 @@ export default function Page() {
       <CardWrapper
         headerLabel="Welcome back"
         backButtonLabel="Don't have an account?"
-        backButtonHref="/auth/register"
+        backButtonHref="/register"
       >
         <Form
           initialValues={initialValues}
