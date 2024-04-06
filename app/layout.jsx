@@ -37,7 +37,7 @@ export default async function RootLayout({children}) {
             </aside>
           }
 
-          <article className="flex-grow p-4">
+          <article className="flex-grow">
             {children}
           </article>
         </main>
