@@ -4,7 +4,7 @@ import CardWrapper from "@/components/Auth/CardWrapper";
 import {useRouter} from "next/navigation";
 import {signIn} from "next-auth/react";
 import {useState, useTransition} from "react";
-import {LoginSchema} from "@/lib/form/validation";
+import {LoginSchema, RegisterSchema} from "@/lib/form/validation";
 import Form from "@/components/Formik/Form";
 import FormMessage from "@/components/Formik/FormMessage";
 import FormField from "@/components/Formik/FormField";
@@ -12,6 +12,10 @@ import FormField from "@/components/Formik/FormField";
 const initialValues = {
   username: '',
   password: ''
+}
+
+const createUser = async () => {
+  return {success: true}
 }
 
 export default function Page() {
@@ -23,18 +27,13 @@ export default function Page() {
     setError('')
 
     startTransition(async () => {
-      const res = await signIn('credentials', {...values, redirect: false})
+      const {success, error} = await createUser(values)
       setSubmitting(false)
 
-      if (res.ok) {
-        router.replace('/')
-        router.push()
+      if (success) {
+        router.push('/auth/login')
       } else {
-        if (res.error === 'CredentialsSignin') {
-          setError('Incorrect username or password ')
-        } else {
-          setError(res.error)
-        }
+        setError(error)
       }
     })
   }
@@ -42,13 +41,13 @@ export default function Page() {
   return (
     <div className="h-full flex justify-center items-center">
       <CardWrapper
-        headerLabel="Welcome back"
-        backButtonLabel="Don't have an account?"
-        backButtonHref="/auth/register"
+        headerLabel="Create an account"
+        backButtonLabel="Already have an account?"
+        backButtonHref="/auth/login"
       >
         <Form
           initialValues={initialValues}
-          validationSchema={LoginSchema}
+          validationSchema={RegisterSchema}
           onSubmit={onSubmit}
         >
           <FormMessage message={error}/>
@@ -57,6 +56,15 @@ export default function Page() {
             name="username"
             label="Username"
             placeholder="Username"
+            disabled={isPending}
+            required
+          />
+
+          <FormField
+            name="email"
+            email="email"
+            label="Email"
+            placeholder="Email"
             disabled={isPending}
             required
           />
@@ -71,7 +79,7 @@ export default function Page() {
           />
 
           <Button type="submit" size="lg" className="w-full" disabled={isPending}>
-            Login
+            Register
           </Button>
         </Form>
       </CardWrapper>

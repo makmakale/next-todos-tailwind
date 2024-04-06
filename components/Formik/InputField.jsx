@@ -1,6 +1,13 @@
+'use client'
+
+import {useState} from "react";
 import {cn} from "@/lib/utils";
+//
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
+//
+import {Eye, EyeOff} from 'lucide-react';
+import {Button} from "@/components/ui/button";
 
 const InputField = ({
   label = "Unknown",
@@ -21,6 +28,9 @@ const InputField = ({
   const isError = errors[name] && touched[name]
   const error = isError && errors[name]
 
+  const [showPassword, setShowPassword] = useState(false)
+  const handleShowPassword = () => setShowPassword((show) => !show)
+
   return (
     <div className={cn("space-y-2 mb-4", className)} {...props}>
       {label ? (
@@ -29,15 +39,26 @@ const InputField = ({
         </Label>
       ) : null}
 
-      <Input
-        id={id}
-        name={name}
-        value={values[name] || ''}
-        error={error}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        {...props}
-      />
+      <div className="relative flex">
+        <Input
+          id={id}
+          type={type === 'password' ? showPassword ? 'text' : 'password' : type}
+          autoComplete="off"
+          name={name}
+          value={values[name] || ''}
+          error={error}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          {...props}
+          className="w-full"
+        />
+
+        {type === "password" ? (
+          <Button variant="ghost" onClick={handleShowPassword} className="absolute top-0 right-0">
+            {!showPassword ? <Eye/> : <EyeOff/>}
+          </Button>
+        ) : null}
+      </div>
 
       {isError || helperText
         ? (

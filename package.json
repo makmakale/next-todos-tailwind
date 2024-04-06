@@ -1,6 +1,6 @@
 {
   "name": "ntdb-v3",
-  "version": "3.0.2.0",
+  "version": "3.0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -24,11 +24,9 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.51.2",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "yup": "^1.4.0",
-    "zod": "^3.22.4"
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
