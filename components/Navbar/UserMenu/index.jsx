@@ -48,7 +48,7 @@ const UserMenu = ({user = {}}) => {
         <DropdownMenuItem>Profile</DropdownMenuItem>
         <DropdownMenuItem>My Tasks</DropdownMenuItem>
         <DropdownMenuSeparator/>
-        <DropdownMenuItem onClick={() => signOut()}>
+        <DropdownMenuItem onClick={() => signOut({callbackUrl: '/login'})}>
           <LogOut size={16} className="mr-2"/> Logout
         </DropdownMenuItem>
       </DropdownMenuContent>
