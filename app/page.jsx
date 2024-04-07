@@ -9,7 +9,7 @@ export default function Home() {
         alt={"To Do"}
         width={800}
         height={0}
-        className={'rounded-lg shadow-md shadow-blue-500'}
+        className={'rounded-lg object-cover shadow-md shadow-blue-500'}
       />
     </div>
   );

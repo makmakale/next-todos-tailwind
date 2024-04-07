@@ -34,23 +34,23 @@ export default async function RootLayout({children, auth}) {
       <SessionProvider session={session}>
         <Navbar/>
 
-        <main className="flex-grow flex">
+        <div className="flex-grow flex">
           {!!session ?
             <>
-              <aside className="hidden md:block w-[30%] border-r border-r-gray-300 dark:border-r-gray-800">
+              <aside className="w-64 hidden md:block w-[350] border-r border-r-gray-300 dark:border-r-gray-800">
                 <Sidebar/>
               </aside>
 
-              <article className="flex-grow">
+              <main className="flex-grow">
                 {children}
-              </article>
+              </main>
             </>
             :
-            <article className="flex-grow">
+            <main className="flex-grow">
               {auth}
-            </article>
+            </main>
           }
-        </main>
+        </div>
 
         <Footer/>
       </SessionProvider>
