@@ -30,7 +30,7 @@ export default function Page() {
       setSubmitting(false)
 
       if (res.ok) {
-        router.replace('/')
+        router.push('/board')
         router.refresh()
       } else {
         if (res.error === 'CredentialsSignin') {

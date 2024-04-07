@@ -6,6 +6,8 @@ export async function middleware(request) {
   const token = await getToken({req: request})
   if (!token && !PUBLIC_ROUTES.includes(request.nextUrl.pathname)) {
     return NextResponse.redirect(new URL('/', request.url))
+  } else if (token && PUBLIC_ROUTES.includes(request.nextUrl.pathname)) {
+    return NextResponse.redirect(new URL('/board', request.url))
   }
 }
 

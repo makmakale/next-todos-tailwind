@@ -3,9 +3,14 @@ import {cn} from "@/lib/utils";
 
 export function BoardIcon({className}) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-         className={cn("lucide lucide-layout-dashboard", className)}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={cn("lucide lucide-layout-dashboard", className)}
+    >
       <rect width="7" height="9" x="3" y="3" rx="1"/>
       <rect width="7" height="5" x="14" y="3" rx="1"/>
       <rect width="7" height="9" x="14" y="12" rx="1"/>
@@ -17,7 +22,7 @@ export function BoardIcon({className}) {
 export function UsersIcon({className}) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
          className={cn("lucide lucide-users", className)}>
       <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
       <circle cx="9" cy="7" r="4"/>
@@ -30,7 +35,7 @@ export function UsersIcon({className}) {
 export function SettingsIcon({className}) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
          className={cn("lucide lucide-settings", className)}>
       <path
         d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
@@ -42,7 +47,7 @@ export function SettingsIcon({className}) {
 export function ProjectsIcon({className}) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
          className={cn("lucide lucide-book-copy", className)}>
       <path d="M2 16V4a2 2 0 0 1 2-2h11"/>
       <path d="M5 14H4a2 2 0 1 0 0 4h1"/>
@@ -54,7 +59,7 @@ export function ProjectsIcon({className}) {
 export function StatusesIcon({className}) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
          className={cn("lucide lucide-columns-3", className)}>
       <rect width="18" height="18" x="3" y="3" rx="2"/>
       <path d="M9 3v18"/>
@@ -66,7 +71,7 @@ export function StatusesIcon({className}) {
 export function TypesIcon({className}) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
          className={cn("lucide lucide-layout-list", className)}>
       <rect width="7" height="7" x="3" y="3" rx="1"/>
       <rect width="7" height="7" x="3" y="14" rx="1"/>
@@ -81,7 +86,7 @@ export function TypesIcon({className}) {
 export function PrioritiesIcon({className}) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
          className={cn("lucide lucide-send-to-back", className)}>
       <rect x="14" y="14" width="8" height="8" rx="2"/>
       <rect x="2" y="2" width="8" height="8" rx="2"/>

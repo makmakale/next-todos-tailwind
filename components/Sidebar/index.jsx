@@ -51,7 +51,7 @@ const Sidebar = () => {
       {menuItems.map((menu, key) => {
         if (menu.group) {
           return (
-            <>
+            <div key={key}>
               <h2 className="my-2 px-2 text-lg font-semibold tracking-tight">
                 {menu.group}
               </h2>
@@ -60,7 +60,7 @@ const Sidebar = () => {
                   <MenuItem key={optionKey} item={option}/>
                 )}
               </ul>
-            </>
+            </div>
           )
         }
 
