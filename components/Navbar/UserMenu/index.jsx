@@ -35,11 +35,11 @@ const UserMenu = ({user = {}}) => {
 
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
-          <div class="flex flex-col space-y-1">
-            <p class="text-sm font-medium leading-none">
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium leading-none">
               {user.name}
             </p>
-            <p class="text-xs leading-none text-muted-foreground">
+            <p className="text-xs leading-none text-muted-foreground">
               {user.email}
             </p>
           </div>

@@ -23,7 +23,7 @@ export default async function RootLayout({children, auth}) {
   if (!db.initialized) { await db.initialize() }
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
     <body className={`${inter.className} min-h-screen flex flex-col`}>
     <ThemeProvider
       attribute="class"
