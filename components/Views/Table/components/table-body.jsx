@@ -31,7 +31,7 @@ const TableBody = ({columns, loadData, onDelete, setDefault}) => {
                 return (
                   <TableCell key={col.id} className={cn(col.align && `text-${col.align}`)}>
                     {col.link ? (
-                      <Button variant="link" asChild>
+                      <Button variant="link" asChild className="px-0">
                         <Link href={`${col.link}/${row.id}`}>
                           {row[col.id]}
                         </Link>

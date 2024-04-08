@@ -11,6 +11,7 @@ import {TableProvider, useTableContext} from "@/components/Views/Table/store/tab
 import {clearMessages, loadData, setSearchValue} from "@/components/Views/Table/store/actions";
 import FormMessage from "@/components/ui/form-message";
 import TableBody from "@/components/Views/Table/components/table-body";
+import TablePagination from "@/components/Views/Table/components/table-pagination";
 
 const Component = ({
   title,
@@ -53,17 +54,20 @@ const Component = ({
       {state.isLoading ? (
         <Skeleton className="h-[300px] rounded-xl"/>
       ) : (
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader columns={columns}/>
-            <TableBody
-              columns={columns}
-              loadData={fetchTableData}
-              onDelete={onDelete}
-              setDefault={setDefault}
-            />
-          </Table>
-        </div>
+        <>
+          <div className="rounded-md border">
+            <Table>
+              <TableHeader columns={columns}/>
+              <TableBody
+                columns={columns}
+                loadData={fetchTableData}
+                onDelete={onDelete}
+                setDefault={setDefault}
+              />
+            </Table>
+          </div>
+          <TablePagination/>
+        </>
       )}
     </div>
   );
