@@ -8,6 +8,7 @@ import SessionProvider from "@/components/Providers/Session";
 import {getServerSession} from 'next-auth'
 import {authOptions} from '@/lib/auth'
 import {db} from '@/lib/database/sequelize'
+import {Toaster} from "@/components/ui/toaster";
 
 const inter = Poppins({subsets: ["latin"], weight: '400'});
 
@@ -50,6 +51,7 @@ export default async function RootLayout({children, auth}) {
               {auth}
             </main>
           }
+          <Toaster/>
         </div>
 
         <Footer/>

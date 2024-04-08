@@ -1,9 +1,37 @@
-export default async function ProjectsPage() {
-  return (
-    <div className={'w-full h-full flex justify-center items-center p-10'}>
-      <h1 className={"text-3xl md:text-7xl mb-10 text-center font-black"}>
-        Projects
-      </h1>
-    </div>
-  )
+'use client'
+import TableView from "@/components/Views/Table";
+import {deleteProject, getListOfProjects, setDefaultProject} from "@/lib/actions/projects";
+import {IsDefault} from "@/components/Views/Table/components/Columns/is-default";
+import DeleteAction from "@/components/Views/Table/components/Columns/delete-action";
+
+export default function ProjectsPage() {
+  const columns = [
+    {id: 'id', title: 'ID', className: 'w-[40px]', align: 'center'},
+    {id: 'title', title: 'Title', link: '/projects/edit'},
+    {id: 'alias', title: 'Alias'},
+    {id: 'description', title: 'Description'},
+    {
+      id: 'isDefault',
+      title: 'Default',
+      className: 'w-[80px]',
+      align: 'center',
+      renderValue: IsDefault,
+    },
+    {
+      id: 'delete',
+      title: '',
+      className: 'w-[40px]',
+      align: 'center',
+      renderValue: DeleteAction
+    },
+  ]
+
+  return <TableView
+    title={"Projects"}
+    searchLabel={"Search projects..."}
+    columns={columns}
+    getData={getListOfProjects}
+    setDefault={setDefaultProject}
+    onDelete={deleteProject}
+  />
 }
