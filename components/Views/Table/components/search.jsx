@@ -1,7 +1,7 @@
 import {Input} from "@/components/ui/input";
 import {Search as SearchIcon} from 'lucide-react'
 
-const Search = ({value, onChange, placeholder}) => {
+const Search = ({value, onChange, placeholder = "Type for search"}) => {
   return (
     <div className="relative my-4">
       <SearchIcon className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground"/>

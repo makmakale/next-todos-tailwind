@@ -1,11 +1,9 @@
 import {Star} from "lucide-react";
 import {Button} from "@/components/ui/button";
-import {useToast} from "@/components/ui/use-toast";
-import {setSuccess} from "@/components/Views/Table/store/actions";
+import {setError, setSuccess} from "@/components/Views/Table/store/actions";
 import {useTableContext} from "@/components/Views/Table/store/table-context";
 
 export const IsDefault = ({row, col, reloadData, setDefault}) => {
-  const {toast} = useToast()
   const [, dispatch] = useTableContext()
 
   const handleClick = async () => {
@@ -15,10 +13,7 @@ export const IsDefault = ({row, col, reloadData, setDefault}) => {
       reloadData()
     }
     if (error) {
-      toast({
-        variant: "destructive",
-        title: error,
-      })
+      dispatch(setError(error))
     }
   }
 

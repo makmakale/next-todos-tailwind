@@ -15,7 +15,7 @@ import TablePagination from "@/components/Views/Table/components/table-paginatio
 
 const Component = ({
   title,
-  searchLabel = "Search...",
+  searchLabel,
   columns,
   getData,
   setDefault,
