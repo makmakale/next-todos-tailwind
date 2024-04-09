@@ -1,4 +1,4 @@
-import {get} from "@/lib/data";
+import {get} from "@/lib/utils/data";
 
 const TaskKey = ({row, col}) => {
   const projectAlias = get(row, 'project.alias')

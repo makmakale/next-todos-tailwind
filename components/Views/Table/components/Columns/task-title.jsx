@@ -1,4 +1,4 @@
-import {get} from "@/lib/data";
+import {get} from "@/lib/utils/data";
 import {Badge} from "@/components/ui/badge";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";

@@ -11,7 +11,7 @@ import {
 import {setError, setSuccess} from "@/components/Views/Table/store/actions";
 import {useTableContext} from "@/components/Views/Table/store/table-context";
 import {useState} from "react";
-import {get} from "@/lib/data";
+import {get} from "@/lib/utils/data";
 
 const DisableAction = ({row, col, reloadData, onDelete}) => {
   const value = get(row, col.id)

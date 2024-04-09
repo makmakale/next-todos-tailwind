@@ -2,7 +2,7 @@ import {Star} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {setError, setSuccess} from "@/components/Views/Table/store/actions";
 import {useTableContext} from "@/components/Views/Table/store/table-context";
-import {get} from "@/lib/data";
+import {get} from "@/lib/utils/data";
 
 export const IsDefault = ({row, col, reloadData, setDefault}) => {
   const [, dispatch] = useTableContext()

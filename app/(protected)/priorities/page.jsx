@@ -3,7 +3,7 @@ import TableView from "@/components/Views/Table";
 import {IsDefault} from "@/components/Views/Table/components/Columns/is-default";
 import DeleteAction from "@/components/Views/Table/components/Columns/delete-action";
 import {deletePriority, getListOfPriorities, setDefaultPriority} from "@/lib/actions/priorities";
-import {get} from "@/lib/data";
+import {get} from "@/lib/utils/data";
 
 export default function PrioritiesPage() {
   const columns = [

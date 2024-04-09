@@ -1,9 +1,9 @@
 import {TableBody as TBody, TableCell, TableRow} from '@/components/ui/table'
-import {cn} from '@/lib/utils'
+import {cn} from '@/lib/utils/utils'
 import {Button} from '@/components/ui/button'
 import Link from 'next/link'
 import {useTableContext} from '@/components/Views/Table/store/table-context'
-import {get} from '@/lib/data'
+import {get} from '@/lib/utils/data'
 
 const TableBody = ({columns, loadData, onDelete, setDefault}) => {
   const [state] = useTableContext()

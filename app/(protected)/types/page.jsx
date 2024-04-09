@@ -3,7 +3,7 @@ import TableView from "@/components/Views/Table";
 import {IsDefault} from "@/components/Views/Table/components/Columns/is-default";
 import DeleteAction from "@/components/Views/Table/components/Columns/delete-action";
 import {deleteType, getListOfTypes, setDefaultType} from "@/lib/actions/types";
-import {get} from "@/lib/data";
+import {get} from "@/lib/utils/data";
 
 export default function TypesPage() {
   const columns = [

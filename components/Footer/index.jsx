@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {AppName} from "@/lib/constants";
-import getPackageVersion from "@/lib/getPackageVersion";
+import getPackageVersion from "@/lib/utils/getPackageVersion";
 
 const Footer = () => {
   return (

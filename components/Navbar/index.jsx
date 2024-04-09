@@ -2,7 +2,7 @@ import {AppName} from "@/lib/constants";
 import Link from "next/link";
 import {ModeToggle} from "@/components/ModeToggle";
 import UserMenu from "@/components/Navbar/UserMenu";
-import {getSessionUser} from "@/lib/users";
+import {getSessionUser} from "@/lib/utils/users";
 
 export default async function Navbar() {
   const user = await getSessionUser()
