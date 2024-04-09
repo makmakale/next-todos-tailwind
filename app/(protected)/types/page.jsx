@@ -3,6 +3,7 @@ import TableView from "@/components/Views/Table";
 import {IsDefault} from "@/components/Views/Table/components/Columns/is-default";
 import DeleteAction from "@/components/Views/Table/components/Columns/delete-action";
 import {deleteType, getListOfTypes, setDefaultType} from "@/lib/actions/types";
+import {get} from "@/lib/data";
 
 export default function TypesPage() {
   const columns = [
@@ -19,7 +20,7 @@ export default function TypesPage() {
           <div
             className="w-[20px] h-[20px] border rounded-md mx-auto"
             style={{
-              backgroundColor: row[col.id]
+              backgroundColor: get(row, col.id)
             }}/>
         )
       }

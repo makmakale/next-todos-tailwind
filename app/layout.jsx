@@ -3,8 +3,8 @@ import {Poppins} from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
-import {ThemeProvider} from "@/components/theme-provider"
-import SessionProvider from "@/components/Providers/Session";
+import {ThemeProvider} from "@/components/Providers/theme-provider"
+import SessionProvider from "@/components/Providers/session-provider";
 import {getServerSession} from 'next-auth'
 import {authOptions} from '@/lib/auth'
 import {db} from '@/lib/database/sequelize'
@@ -38,7 +38,7 @@ export default async function RootLayout({children, auth}) {
         <div className="flex-grow flex">
           {!!session ?
             <>
-              <aside className="w-64 hidden md:block w-[350] border-r border-r-gray-300 dark:border-r-gray-800">
+              <aside className="w-64 hidden md:block md:w-[350] border-r border-r-gray-300 dark:border-r-gray-800">
                 <Sidebar/>
               </aside>
 

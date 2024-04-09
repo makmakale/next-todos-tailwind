@@ -7,7 +7,7 @@ const DateColumn = ({row, col}) => {
 
   return (
     <div>
-      {format(new Date(date), "MM/dd/yyyy")}
+      {format(new Date(date), "dd MMM, yyyy")}
     </div>
   )
 }

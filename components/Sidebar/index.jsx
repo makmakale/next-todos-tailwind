@@ -1,5 +1,6 @@
 import Link from "next/link";
-import {BoardIcon, PrioritiesIcon, ProjectsIcon, StatusesIcon, TypesIcon, UsersIcon} from "@/components/Icons";
+
+import {BookCopy, Columns3, LayoutDashboard, LayoutList, ListOrdered, SendToBack, Users} from 'lucide-react';
 
 const menuItems = [
   {
@@ -8,17 +9,22 @@ const menuItems = [
       {
         link: '/',
         text: 'Board',
-        icon: BoardIcon
+        icon: LayoutDashboard
       },
       {
         link: '/projects',
         text: 'Projects',
-        icon: ProjectsIcon
+        icon: BookCopy
+      },
+      {
+        link: '/tasks',
+        text: 'Tasks',
+        icon: ListOrdered
       },
       {
         link: '/users',
         text: 'Users',
-        icon: UsersIcon
+        icon: Users
       },
     ],
   },
@@ -29,17 +35,17 @@ const menuItems = [
       {
         link: '/statuses',
         text: 'Statuses',
-        icon: StatusesIcon
+        icon: Columns3
       },
       {
         link: '/types',
         text: 'Types',
-        icon: TypesIcon
+        icon: LayoutList
       },
       {
         link: '/priorities',
         text: 'Priorities',
-        icon: PrioritiesIcon
+        icon: SendToBack
       },
     ]
   }

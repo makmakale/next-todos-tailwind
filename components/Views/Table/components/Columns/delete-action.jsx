@@ -42,7 +42,7 @@ const DeleteAction = ({row, reloadData, onDelete}) => {
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete
-            and remove your data from the servers.
+            and remove your data from the server.
           </AlertDialogDescription>
         </AlertDialogHeader>
 

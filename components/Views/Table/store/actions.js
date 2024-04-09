@@ -27,7 +27,7 @@ export const loadData = async (getData, state, dispatch) => {
     const {success, error} = await getData({
       offset: state.page || DEFAULT_PAGE_INDEX,
       limit: state.rowsPerPage || DEFAULT_PAGE_SIZE,
-      title: state.searchValue || ''
+      q: state.searchValue || ''
     })
 
     if (success) dispatch(setData(success))
