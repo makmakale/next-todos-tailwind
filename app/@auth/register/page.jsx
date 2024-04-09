@@ -57,6 +57,14 @@ export default function Page() {
           />
 
           <FormField
+            name="name"
+            label="Name"
+            placeholder="Name"
+            disabled={isPending}
+            required
+          />
+
+          <FormField
             name="email"
             email="email"
             label="Email"
