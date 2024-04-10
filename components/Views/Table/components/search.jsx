@@ -1,21 +1,25 @@
-'use client'
+'use client';
 
-import {Input} from "@/components/ui/input";
-import {CirclePlus, Search as SearchIcon} from 'lucide-react'
-import {Button} from "@/components/ui/button";
-import Link from "next/link";
-import {usePathname} from "next/navigation";
+import { Input } from '@/components/ui/input';
+import { CirclePlus, Search as SearchIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useTableContext } from '@/components/Views/Table/store/table-context';
 
-const Search = ({value, onChange, placeholder = "Type for search"}) => {
-  const pathname = usePathname()
+const Search = ({value, onChange, placeholder = 'Type for search'}) => {
+  const pathname = usePathname();
+  const [{isLoading}] = useTableContext();
 
   return (
     <div className="relative my-4 flex">
-      <SearchIcon className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground"/>
+      <SearchIcon
+        className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground"/>
       <Input
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        disabled={isLoading}
         className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
       />
 

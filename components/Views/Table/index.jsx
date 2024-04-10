@@ -1,17 +1,33 @@
-'use client'
-import {Table} from "@/components/ui/table";
-import * as React from "react";
-import {useEffect} from "react";
-import useDebounce from "@/lib/hooks/useDebounce";
-import PageTitle from "@/components/Views/Table/components/page-title";
-import Search from "@/components/Views/Table/components/search";
-import {Skeleton} from "@/components/ui/skeleton";
-import TableHeader from "@/components/Views/Table/components/table-header";
-import {TableProvider, useTableContext} from "@/components/Views/Table/store/table-context";
-import {clearMessages, loadData, setSearchValue} from "@/components/Views/Table/store/actions";
-import FormMessage from "@/components/ui/form-message";
-import TableBody from "@/components/Views/Table/components/table-body";
-import TablePagination from "@/components/Views/Table/components/table-pagination";
+'use client';
+import { Table } from '@/components/ui/table';
+import * as React from 'react';
+import { useEffect } from 'react';
+import useDebounce from '@/lib/hooks/useDebounce';
+import PageTitle from '@/components/Views/Table/components/page-title';
+import Search from '@/components/Views/Table/components/search';
+import TableHeader from '@/components/Views/Table/components/table-header';
+import {
+  TableProvider,
+  useTableContext,
+} from '@/components/Views/Table/store/table-context';
+import {
+  clearMessages,
+  loadData,
+  setSearchValue,
+} from '@/components/Views/Table/store/actions';
+import FormMessage from '@/components/ui/form-message';
+import TablePagination
+  from '@/components/Views/Table/components/table-pagination';
+import dynamic from 'next/dynamic';
+import TableBodyLoader
+  from '@/components/Views/Table/components/table-body-loader';
+
+const DynamicTableBody = dynamic(() =>
+    import('@/components/Views/Table/components/table-body'),
+  {
+    loading: TableBodyLoader,
+  },
+);
 
 const Component = ({
   title,
@@ -19,21 +35,21 @@ const Component = ({
   columns,
   getData,
   setDefault,
-  onDelete
+  onDelete,
 }) => {
-  const [state, dispatch] = useTableContext()
+  const [state, dispatch] = useTableContext();
 
-  const fetchTableData = () => loadData(getData, state, dispatch)
+  const fetchTableData = () => loadData(getData, state, dispatch);
 
-  const debouncedSearchValue = useDebounce(state.searchValue, 500)
-  const handleSearchChange = ({target}) => dispatch(setSearchValue(target.value))
+  const debouncedSearchValue = useDebounce(state.searchValue, 500);
+  const handleSearchChange = ({target}) => dispatch(setSearchValue(target.value));
 
   useEffect(() => {
-    if (!getData) return
+    if (!getData) return;
 
-    fetchTableData()
+    fetchTableData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getData, state.page, state.rowsPerPage, debouncedSearchValue])
+  }, [getData, state.page, state.rowsPerPage, debouncedSearchValue]);
 
   return (
     <div className={'w-full h-full p-10'}>
@@ -51,24 +67,19 @@ const Component = ({
         onChange={handleSearchChange}
       />
 
-      {state.isLoading ? (
-        <Skeleton className="h-[300px] rounded-xl"/>
-      ) : (
-        <>
-          <div className="rounded-md border">
-            <Table>
-              <TableHeader columns={columns}/>
-              <TableBody
-                columns={columns}
-                loadData={fetchTableData}
-                onDelete={onDelete}
-                setDefault={setDefault}
-              />
-            </Table>
-          </div>
-          <TablePagination/>
-        </>
-      )}
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader columns={columns}/>
+          <DynamicTableBody
+            columns={columns}
+            loadData={fetchTableData}
+            onDelete={onDelete}
+            setDefault={setDefault}
+          />
+        </Table>
+      </div>
+
+      <TablePagination/>
     </div>
   );
 };
@@ -78,7 +89,7 @@ const TableWrapper = (props) => {
     <TableProvider>
       <Component {...props}/>
     </TableProvider>
-  )
-}
+  );
+};
 
 export default TableWrapper;
