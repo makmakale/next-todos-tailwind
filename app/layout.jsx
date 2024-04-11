@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import 'react-quill/dist/quill.snow.css'
 import {Poppins} from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
@@ -38,7 +39,8 @@ export default async function RootLayout({children, auth}) {
         <div className="flex-grow flex">
           {!!session ?
             <>
-              <aside className="w-64 hidden md:block md:w-[350] border-r border-r-gray-300 dark:border-r-gray-800">
+              <aside
+                className="hidden md:block w-full max-w-[350px] border-r border-r-gray-300 dark:border-r-gray-800">
                 <Sidebar/>
               </aside>
 

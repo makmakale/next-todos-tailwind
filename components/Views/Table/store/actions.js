@@ -24,13 +24,13 @@ export const loadData = async (getData, state, dispatch) => {
   dispatch(toggleLoading(true))
 
   try {
-    const {success, error} = await getData({
+    const {data, error} = await getData({
       offset: state.page || DEFAULT_PAGE_INDEX,
       limit: state.rowsPerPage || DEFAULT_PAGE_SIZE,
       q: state.searchValue || ''
     })
 
-    if (success) dispatch(setData(success))
+    if (data) dispatch(setData(data))
     if (error) dispatch(setError(error))
 
   } finally {

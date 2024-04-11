@@ -1,17 +1,18 @@
-'use client'
+'use client';
 
-import {useState} from "react";
-import {cn} from "@/lib/utils/utils";
+import {useState} from 'react';
+import {cn} from '@/lib/utils/utils';
 //
-import {Label} from "@/components/ui/label";
-import {Input} from "@/components/ui/input";
+import {Label} from '@/components/ui/label';
+import {Input} from '@/components/ui/input';
 //
 import {Eye, EyeOff} from 'lucide-react';
-import {Button} from "@/components/ui/button";
+import {Button} from '@/components/ui/button';
 
 const InputField = ({
-  label = "Unknown",
+  label = 'Unknown',
   type = 'text',
+  required,
   helperText,
   className,
   field: {name},
@@ -20,22 +21,22 @@ const InputField = ({
     errors,
     values,
     handleChange,
-    handleBlur
+    handleBlur,
   },
   ...props
 }) => {
-  const id = `${name}-form-item`
-  const isError = errors[name] && touched[name]
-  const error = isError && errors[name]
+  const id = `${name}-form-item`;
+  const isError = errors[name] && touched[name];
+  const error = isError && errors[name];
 
-  const [showPassword, setShowPassword] = useState(false)
-  const handleShowPassword = () => setShowPassword((show) => !show)
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPassword = () => setShowPassword((show) => !show);
 
   return (
-    <div className={cn("space-y-2 mb-4", className)} {...props}>
+    <div className={cn('space-y-2 mb-4', className)}>
       {label ? (
-        <Label htmlFor={id} className={cn(error && "text-destructive", className)}>
-          {label}
+        <Label htmlFor={id} className={cn(error && 'text-destructive', className)}>
+          {label}{required && '*'}
         </Label>
       ) : null}
 
@@ -43,6 +44,7 @@ const InputField = ({
         <Input
           id={id}
           type={type === 'password' ? showPassword ? 'text' : 'password' : type}
+          required={required}
           autoComplete="off"
           name={name}
           value={values[name] || ''}
@@ -53,7 +55,7 @@ const InputField = ({
           className="w-full"
         />
 
-        {type === "password" ? (
+        {type === 'password' ? (
           <Button type="button" variant="ghost" onClick={handleShowPassword} className="absolute top-0 right-0">
             {!showPassword ? <Eye/> : <EyeOff/>}
           </Button>
@@ -62,7 +64,7 @@ const InputField = ({
 
       {isError || helperText
         ? (
-          <p className={cn("text-sm text-muted-foreground", error && "text-destructive")}>
+          <p className={cn('text-sm text-muted-foreground', error && 'text-destructive')}>
             {error || helperText}
           </p>
         )

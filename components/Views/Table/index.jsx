@@ -1,26 +1,16 @@
 'use client';
 import { Table } from '@/components/ui/table';
-import * as React from 'react';
 import { useEffect } from 'react';
 import useDebounce from '@/lib/hooks/useDebounce';
 import PageTitle from '@/components/Views/Table/components/page-title';
 import Search from '@/components/Views/Table/components/search';
 import TableHeader from '@/components/Views/Table/components/table-header';
-import {
-  TableProvider,
-  useTableContext,
-} from '@/components/Views/Table/store/table-context';
-import {
-  clearMessages,
-  loadData,
-  setSearchValue,
-} from '@/components/Views/Table/store/actions';
+import { TableProvider, useTableContext } from '@/components/Views/Table/store/table-context';
+import { clearMessages, loadData, setSearchValue } from '@/components/Views/Table/store/actions';
 import FormMessage from '@/components/ui/form-message';
-import TablePagination
-  from '@/components/Views/Table/components/table-pagination';
+import TablePagination from '@/components/Views/Table/components/table-pagination';
 import dynamic from 'next/dynamic';
-import TableBodyLoader
-  from '@/components/Views/Table/components/table-body-loader';
+import TableBodyLoader from '@/components/Views/Table/components/table-body-loader';
 
 const DynamicTableBody = dynamic(() =>
     import('@/components/Views/Table/components/table-body'),

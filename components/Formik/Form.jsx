@@ -1,19 +1,15 @@
-import {Formik, Form as FormikForm} from "formik";
+import {Form as FormikForm, Formik} from 'formik';
+import FormMessage from "@/components/ui/form-message";
 
 const Form = ({
-  initialValues,
-  validationSchema,
-  onSubmit,
-  children
+  children,
+  ...props
 }) => {
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {() => (
+    <Formik {...props}>
+      {({errors, submitCount}) => (
         <FormikForm>
+          {submitCount > 0 && <FormMessage message={Object.values(errors)[0]} variant="error"/>}
           {children}
         </FormikForm>
       )}
