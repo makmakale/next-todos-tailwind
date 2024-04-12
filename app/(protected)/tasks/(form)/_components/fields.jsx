@@ -11,7 +11,7 @@ import UserWithAvatarField from "@/components/Formik/UserWithAvatarField";
 
 export default function Fields({user}) {
   return (
-    <div className="flex space-x-4">
+    <div className="flex lg:space-x-4 flex-wrap lg:flex-nowrap">
       <div className="w-full flex flex-col">
         <div className="flex space-x-2">
           <FormField
@@ -37,7 +37,7 @@ export default function Fields({user}) {
         />
       </div>
 
-      <div className="w-full max-w-[350px]">
+      <div className="w-full lg:max-w-[350px]">
         <FormField
           name="statusId"
           label="Status"

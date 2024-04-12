@@ -40,7 +40,7 @@ export default async function RootLayout({children, auth}) {
           {!!session ?
             <>
               <aside
-                className="hidden md:block min-w-[300px] w-[300px] border-r border-r-gray-300 dark:border-r-gray-800">
+                className="hidden md:block w-[300px] border-r border-r-gray-300 dark:border-r-gray-800">
                 <Sidebar/>
               </aside>
 

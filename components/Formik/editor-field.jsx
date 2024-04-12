@@ -45,7 +45,7 @@ const EditorField = (props) => {
   if (!ReactQuill) return null
 
   return (
-    <div className={cn('space-y-2 flex flex-col', className)}>
+    <div className={cn('space-y-2 flex flex-col my-2', className)}>
       {label ? <Label>{label}</Label> : null}
 
       <div className="relative flex flex-grow">
