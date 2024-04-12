@@ -35,7 +35,7 @@ const SelectField = ({
   };
 
   useEffect(() => {
-    if (getOptions) {
+    if (getOptions && !localOptions.length) {
       startTransition(async () => {
         const {data, error} = await getOptions();
 
@@ -53,7 +53,7 @@ const SelectField = ({
         }
       });
     }
-  }, [getOptions, name, value]);
+  }, [getOptions, localOptions.length, name, value]);
 
   return (
     <div className={cn('w-full space-y-2 mb-4', className)}>

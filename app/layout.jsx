@@ -40,11 +40,11 @@ export default async function RootLayout({children, auth}) {
           {!!session ?
             <>
               <aside
-                className="hidden md:block w-full max-w-[350px] border-r border-r-gray-300 dark:border-r-gray-800">
+                className="hidden md:block min-w-[300px] w-[300px] border-r border-r-gray-300 dark:border-r-gray-800">
                 <Sidebar/>
               </aside>
 
-              <main className="flex-grow">
+              <main className="flex-grow overflow-hidden">
                 {children}
               </main>
             </>

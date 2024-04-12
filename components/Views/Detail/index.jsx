@@ -6,16 +6,20 @@ import {useRouter} from "next/navigation";
 import FormMessage from "@/components/ui/form-message";
 import {useDetailsContext} from "@/components/Views/Detail/store/details-context";
 import {clearMessages} from "@/components/Views/Detail/store/actions";
+import {Loader2} from "lucide-react";
 
 const DetailsView = ({
   initialValues,
   validationSchema,
   onSubmit,
   formTitle,
+  actions,
   children,
 }) => {
   const router = useRouter()
-  const [{error, success}, dispatch] = useDetailsContext()
+  const [{isLoading, error, success}, dispatch] = useDetailsContext()
+
+  if (isLoading) return <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
 
   return (
     <Form
@@ -41,8 +45,12 @@ const DetailsView = ({
           </CardContent>
 
           <CardFooter className="space-x-2">
-            <Button type="button" variant="outline" onClick={() => router.back()}>Cancel</Button>
-            <Button type="submit">Submit</Button>
+            {actions ? actions : (
+              <>
+                <Button type="button" variant="outline" onClick={() => router.back()}>Cancel</Button>
+                <Button type="submit">Submit</Button>
+              </>
+            )}
           </CardFooter>
         </Card>
       </div>

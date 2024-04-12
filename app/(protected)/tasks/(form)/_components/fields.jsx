@@ -72,7 +72,6 @@ export default function Fields({user}) {
 
             <FormField
               name="createdBy"
-              label="Reporter"
               user={user}
               component={UserWithAvatarField}/>
           </CardContent>

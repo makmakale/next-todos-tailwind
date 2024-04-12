@@ -13,10 +13,10 @@ const Table = () => {
     {
       id: 'id',
       title: 'Task',
-      className: 'w-[100px]',
+      className: 'min-w-[100px] w-[100px]',
       renderValue: TaskKey,
     },
-    {id: 'title', title: 'Title', link: '/tasks/edit', renderValue: TaskTitleColumn},
+    {id: 'title', title: 'Title', link: '/tasks/edit', className: 'min-w-[300px]', renderValue: TaskTitleColumn},
     {id: 'status.title', title: 'Status'},
     {id: 'priority.title', title: 'Priority', renderValue: PriorityColumn},
     {id: 'assignee.name', title: 'Assignee'},
