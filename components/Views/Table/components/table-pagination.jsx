@@ -7,7 +7,7 @@ import {ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,} from 'lucide-re
 
 function TablePagination() {
   const [{page, rowsPerPage, total}, dispatch] = useTableContext()
-  const countPages = Math.floor(total / rowsPerPage) || 1
+  const countPages = Math.ceil(total / rowsPerPage) || 1
 
   const getCanPreviousPage = () => {
     return page - 1 >= 0

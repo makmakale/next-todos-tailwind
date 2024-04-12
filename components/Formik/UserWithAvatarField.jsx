@@ -32,7 +32,7 @@ const UserWithAvatarField = ({
       <div className="relative flex">
         <div className="flex space-x-2 items-center">
           <Avatar>
-            <AvatarImage src={user?.image || '/images/noavatar.png'}/>
+            <AvatarImage id={id} src={user?.image || '/images/noavatar.png'}/>
           </Avatar>
 
           <div>{user?.name || 'Unknown'}</div>

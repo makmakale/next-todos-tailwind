@@ -1,13 +1,15 @@
 import FormField from "@/components/Formik/FormField";
 import {getProjectSelectOptions} from "@/lib/actions/projects";
-import SelectField from "@/components/Formik/SelectField";
-import EditorField from "@/components/Formik/editor-field";
 import {getStatusSelectOptions} from "@/lib/actions/statuses";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {getUserSelectOptions} from "@/lib/actions/users";
 import {getTypeSelectOptions} from "@/lib/actions/types";
 import {getPrioritySelectOptions} from "@/lib/actions/priorities";
-import UserWithAvatarField from "@/components/Formik/UserWithAvatarField";
+import dynamic from "next/dynamic";
+
+const dynamicEditorField = dynamic(() => import('@/components/Formik/EditorField'))
+const dynamicSelectField = dynamic(() => import('@/components/Formik/SelectField'))
+const dynamicUserWithAvatarField = dynamic(() => import('@/components/Formik/UserWithAvatarField'))
 
 export default function Fields({user}) {
   return (
@@ -26,14 +28,14 @@ export default function Fields({user}) {
             getOptions={getProjectSelectOptions}
             required
             className={"lg:max-w-[180px]"}
-            component={SelectField}/>
+            component={dynamicSelectField}/>
         </div>
 
         <FormField
           name="description"
           label="Description"
           className="w-full flex-grow"
-          component={EditorField}
+          component={dynamicEditorField}
         />
       </div>
 
@@ -43,7 +45,7 @@ export default function Fields({user}) {
           label="Status"
           getOptions={getStatusSelectOptions}
           required
-          component={SelectField}/>
+          component={dynamicSelectField}/>
 
         <Card>
           <CardHeader>
@@ -55,25 +57,25 @@ export default function Fields({user}) {
               name="userId"
               label="Assignee"
               getOptions={getUserSelectOptions}
-              component={SelectField}/>
+              component={dynamicSelectField}/>
 
             <FormField
               name="typeId"
               label="Type"
               getOptions={getTypeSelectOptions}
               required
-              component={SelectField}/>
+              component={dynamicSelectField}/>
 
             <FormField
               name="priorityId"
               label="Priority"
               getOptions={getPrioritySelectOptions}
-              component={SelectField}/>
+              component={dynamicSelectField}/>
 
             <FormField
               name="createdBy"
               user={user}
-              component={UserWithAvatarField}/>
+              component={dynamicUserWithAvatarField}/>
           </CardContent>
         </Card>
       </div>

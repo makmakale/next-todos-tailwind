@@ -5,6 +5,8 @@ const TableHeader = ({columns}) => {
   return (
     <THead>
       <TableRow>
+        <TableHead className='w-[40px]'>#</TableHead>
+        
         {columns.map(col => (
           <TableHead key={col.id} className={cn('min-w-[100px]', col.className)}>
             {col.title}

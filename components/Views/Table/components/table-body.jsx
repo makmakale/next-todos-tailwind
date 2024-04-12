@@ -1,13 +1,9 @@
-import {
-  TableBody as TBody,
-  TableCell,
-  TableRow,
-} from '@/components/ui/table';
-import { cn } from '@/lib/utils/utils';
-import { Button } from '@/components/ui/button';
+import {TableBody as TBody, TableCell, TableRow,} from '@/components/ui/table';
+import {cn} from '@/lib/utils/utils';
+import {Button} from '@/components/ui/button';
 import Link from 'next/link';
-import { useTableContext } from '@/components/Views/Table/store/table-context';
-import { get } from '@/lib/utils/data';
+import {useTableContext} from '@/components/Views/Table/store/table-context';
+import {get} from '@/lib/utils/data';
 
 const TableBody = ({columns, loadData, onDelete, setDefault}) => {
   const [state] = useTableContext();
@@ -15,9 +11,13 @@ const TableBody = ({columns, loadData, onDelete, setDefault}) => {
   return (
     <TBody>
       {state.rows.length > 0 ? (
-        state.rows.map((row) => {
+        state.rows.map((row, index) => {
           return (
             <TableRow key={row.id}>
+              <TableCell>
+                {state.page * state.rowsPerPage + index + 1}
+              </TableCell>
+              
               {columns.map((col) => {
                 if (col.renderValue) {
                   const Comp = col.renderValue;
