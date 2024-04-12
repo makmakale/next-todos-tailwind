@@ -6,7 +6,7 @@ import {useDetailsContext} from "@/components/Views/Detail/store/details-context
 import {useTransition} from "react";
 import {Loader2} from "lucide-react";
 
-const Actions = () => {
+const Actions = ({path = '/'}) => {
   const router = useRouter()
   const [{submitAction}, dispatch] = useDetailsContext()
   const {values, dirty, isValid, resetForm} = useFormikContext();
@@ -17,10 +17,10 @@ const Actions = () => {
       const {data: actionData, error} = await submitAction(values)
       if (actionData) {
         if (mode === 'save&close') {
-          router.replace('/statuses')
+          router.replace(path)
         } else {
           dispatch(setDetails(actionData))
-          router.replace(`/statuses/edit/${actionData.id}`)
+          router.replace(`${path}/edit/${actionData.id}`)
         }
       }
       if (error) {

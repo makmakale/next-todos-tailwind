@@ -9,7 +9,7 @@ import FormLabel from "@/components/Formik/common/FormLabel";
 import FormHelperText from "@/components/Formik/common/FormHelperText";
 
 const InputField = ({
-  label = 'Unknown',
+  label,
   type = 'text',
   required,
   helperText,

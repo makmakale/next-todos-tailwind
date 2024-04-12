@@ -1,17 +1,18 @@
 'use client'
-import {StatusSchema} from "@/lib/form/validation";
 import DetailsView from "@/components/Views/Detail";
 import {useDetailsContext} from "@/components/Views/Detail/store/details-context";
-import Fields from "@/app/(protected)/statuses/_views/_components/fields";
-import Actions from "@/app/(protected)/statuses/_views/_components/actions";
+import Fields from "@/app/(protected)/types/_views/_components/fields";
+import Actions from "@/app/(protected)/types/_views/_components/actions";
+import {TaskTypeSchema} from "@/lib/form/validation";
 
 export default function Details({pageTitle}) {
   const [{details}] = useDetailsContext()
 
   const initialValues = {
     title: details?.title || '',
+    alias: details?.alias || '',
     description: details?.description || '',
-    addTask: details?.addTask || false,
+    color: details?.color || '#3192e7',
     isDefault: details?.isDefault || false,
   }
 
@@ -20,8 +21,8 @@ export default function Details({pageTitle}) {
       pageTitle={pageTitle}
       formTitle={details?.title}
       initialValues={initialValues}
-      validationSchema={StatusSchema}
-      actions={<Actions path="/statuses"/>}
+      validationSchema={TaskTypeSchema}
+      actions={<Actions path="/types"/>}
     >
       <Fields/>
     </DetailsView>

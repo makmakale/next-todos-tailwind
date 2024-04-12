@@ -25,7 +25,7 @@ export default function Details({isCreateMode, pageTitle, user}) {
       formTitle={details?.title}
       initialValues={initialValues}
       validationSchema={TaskSchema}
-      actions={<Actions/>}
+      actions={<Actions path="/tasks"/>}
     >
       <Fields user={isCreateMode ? user : details?.reporter}/>
     </DetailsView>

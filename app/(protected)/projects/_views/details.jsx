@@ -21,7 +21,7 @@ export default function Details({pageTitle}) {
       formTitle={details?.title}
       initialValues={initialValues}
       validationSchema={ProjectSchema}
-      actions={<Actions/>}
+      actions={<Actions path="/projects"/>}
     >
       <Fields/>
     </DetailsView>
