@@ -2,9 +2,11 @@
 import {useMemo, useState} from 'react'
 import dynamic from 'next/dynamic'
 import {cn} from "@/lib/utils/utils";
-import {Label} from "@/components/ui/label";
-import '@/styles/editor.css'
 import {Button} from "@/components/ui/button";
+import FormControl from "@/components/Formik/common/FormControl";
+import FormLabel from "@/components/Formik/common/FormLabel";
+import FormHelperText from "@/components/Formik/common/FormHelperText";
+import '@/styles/editor.css'
 
 const modules = {
   toolbar: [
@@ -49,8 +51,8 @@ const EditorField = (props) => {
   if (!ReactQuill) return null
 
   return (
-    <div className={cn('space-y-2 flex flex-col my-2', className)}>
-      {label ? <Label htmlFor={name}>{label}</Label> : null}
+    <FormControl className={cn('flex flex-col', className)}>
+      <FormLabel label={label} id={name}/>
 
       <div className="relative flex-grow flex flex-col">
         {showSourceCode ? (
@@ -69,14 +71,11 @@ const EditorField = (props) => {
           <Button variant="outline" onClick={toggleShowSourceCode}>Toggle</Button>
         </div>
 
-        {helperText
-          ? (
-            <p className={'text-sm text-muted-foreground'}>
-              {helperText}
-            </p>
-          ) : null}
+        <FormHelperText show={helperText}>
+          {helperText}
+        </FormHelperText>
       </div>
-    </div>
+    </FormControl>
   )
 }
 

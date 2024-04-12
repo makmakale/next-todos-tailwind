@@ -1,13 +1,12 @@
 'use client';
 
 import {useState} from 'react';
-import {cn} from '@/lib/utils/utils';
-//
-import {Label} from '@/components/ui/label';
 import {Input} from '@/components/ui/input';
-//
 import {Eye, EyeOff} from 'lucide-react';
 import {Button} from '@/components/ui/button';
+import FormControl from "@/components/Formik/common/FormControl";
+import FormLabel from "@/components/Formik/common/FormLabel";
+import FormHelperText from "@/components/Formik/common/FormHelperText";
 
 const InputField = ({
   label = 'Unknown',
@@ -27,18 +26,14 @@ const InputField = ({
 }) => {
   const id = `${name}-form-item`;
   const isError = errors[name] && touched[name];
-  const error = isError && errors[name];
+  const error = errors[name];
 
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword((show) => !show);
 
   return (
-    <div className={cn('space-y-2 mb-4', className)}>
-      {label ? (
-        <Label htmlFor={id} className={cn(error && 'text-destructive', className)}>
-          {label}{required && '*'}
-        </Label>
-      ) : null}
+    <FormControl className={className}>
+      <FormLabel label={label} id={id} isError={isError}/>
 
       <div className="relative flex">
         <Input
@@ -62,14 +57,10 @@ const InputField = ({
         ) : null}
       </div>
 
-      {isError || helperText
-        ? (
-          <p className={cn('text-sm text-muted-foreground', error && 'text-destructive')}>
-            {error || helperText}
-          </p>
-        )
-        : null}
-    </div>
+      <FormHelperText show={isError || helperText} isError={isError}>
+        {error || helperText}
+      </FormHelperText>
+    </FormControl>
   );
 };
 

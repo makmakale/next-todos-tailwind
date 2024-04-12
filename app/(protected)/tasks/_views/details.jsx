@@ -2,8 +2,8 @@
 import {TaskSchema} from "@/lib/form/validation";
 import DetailsView from "@/components/Views/Detail";
 import {useDetailsContext} from "@/components/Views/Detail/store/details-context";
-import Fields from "@/app/(protected)/tasks/(form)/_components/fields";
-import Actions from "@/app/(protected)/tasks/(form)/_components/actions";
+import Fields from "@/app/(protected)/tasks/_views/_components/fields";
+import Actions from "@/app/(protected)/tasks/_views/_components/actions";
 
 export default function Details({isCreateMode, pageTitle, user}) {
   const [{details}] = useDetailsContext()

@@ -1,10 +1,9 @@
 'use client';
 
-import {cn} from '@/lib/utils/utils';
-//
-import {Label} from '@/components/ui/label';
-//
 import {Avatar, AvatarImage} from "@/components/ui/avatar";
+import FormControl from "@/components/Formik/common/FormControl";
+import FormLabel from "@/components/Formik/common/FormLabel";
+import FormHelperText from "@/components/Formik/common/FormHelperText";
 
 const UserWithAvatarField = ({
   label = 'Reporter',
@@ -19,15 +18,11 @@ const UserWithAvatarField = ({
 }) => {
   const id = `${name}-form-item`;
   const isError = errors[name] && touched[name];
-  const error = isError && errors[name];
+  const error = errors[name];
 
   return (
-    <div className={cn('space-y-2 mb-4', className)}>
-      {label ? (
-        <Label htmlFor={id} className={cn(error && 'text-destructive', className)}>
-          {label}
-        </Label>
-      ) : null}
+    <FormControl className={className}>
+      <FormLabel label={label} id={id} isError={isError}/>
 
       <div className="relative flex">
         <div className="flex space-x-2 items-center">
@@ -39,14 +34,10 @@ const UserWithAvatarField = ({
         </div>
       </div>
 
-      {isError || helperText
-        ? (
-          <p className={cn('text-sm text-muted-foreground', error && 'text-destructive')}>
-            {error || helperText}
-          </p>
-        )
-        : null}
-    </div>
+      <FormHelperText show={isError || helperText} isError={isError}>
+        {error || helperText}
+      </FormHelperText>
+    </FormControl>
   );
 };
 

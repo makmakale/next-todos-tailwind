@@ -1,12 +1,12 @@
 'use client';
 
 import {cn} from '@/lib/utils/utils';
-//
-import {Label} from '@/components/ui/label';
-//
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select';
 import {useEffect, useState, useTransition} from 'react';
 import {Loader2} from 'lucide-react';
+import FormControl from "@/components/Formik/common/FormControl";
+import FormLabel from "@/components/Formik/common/FormLabel";
+import FormHelperText from "@/components/Formik/common/FormHelperText";
 
 const SelectField = ({
   label = 'Unknown',
@@ -56,12 +56,8 @@ const SelectField = ({
   }, [getOptions, localOptions.length, name, value]);
 
   return (
-    <div className={cn('w-full space-y-2 mb-4', className)}>
-      {label ? (
-        <Label htmlFor={id} className={cn(error && 'text-destructive')}>
-          {label}{required && '*'}
-        </Label>
-      ) : null}
+    <FormControl className={className}>
+      <FormLabel label={label} id={id} isError={isError}/>
 
       <div className="relative flex">
         <Select
@@ -89,14 +85,10 @@ const SelectField = ({
         </Select>
       </div>
 
-      {isError || helperText
-        ? (
-          <p className={cn('text-sm text-muted-foreground', error && 'text-destructive')}>
-            {error || helperText}
-          </p>
-        )
-        : null}
-    </div>
+      <FormHelperText show={isError || helperText} isError={isError}>
+        {error || helperText}
+      </FormHelperText>
+    </FormControl>
   );
 };
 

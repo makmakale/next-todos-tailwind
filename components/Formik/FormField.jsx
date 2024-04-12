@@ -1,5 +1,5 @@
 import {Field} from 'formik';
-import InputField from '@/components/Formik/InputField';
+import InputField from '@/components/Formik/fields/InputField';
 
 const FormField = ({...props}) => {
   return (

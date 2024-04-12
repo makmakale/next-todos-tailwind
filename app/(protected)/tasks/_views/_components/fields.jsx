@@ -7,9 +7,9 @@ import {getTypeSelectOptions} from "@/lib/actions/types";
 import {getPrioritySelectOptions} from "@/lib/actions/priorities";
 import dynamic from "next/dynamic";
 
-const dynamicEditorField = dynamic(() => import('@/components/Formik/EditorField'))
-const dynamicSelectField = dynamic(() => import('@/components/Formik/SelectField'))
-const dynamicUserWithAvatarField = dynamic(() => import('@/components/Formik/UserWithAvatarField'))
+const dynamicEditorField = dynamic(() => import('@/components/Formik/fields/EditorField'))
+const dynamicSelectField = dynamic(() => import('@/components/Formik/fields/SelectField'))
+const dynamicUserWithAvatarField = dynamic(() => import('@/components/Formik/fields/UserWithAvatarField'))
 
 export default function Fields({user}) {
   return (
