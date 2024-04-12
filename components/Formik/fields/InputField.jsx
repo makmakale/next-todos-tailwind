@@ -52,7 +52,7 @@ const InputField = ({
 
         {type === 'password' ? (
           <Button type="button" variant="ghost" onClick={handleShowPassword} className="absolute top-0 right-0">
-            {!showPassword ? <Eye/> : <EyeOff/>}
+            {showPassword ? <Eye/> : <EyeOff/>}
           </Button>
         ) : null}
       </div>

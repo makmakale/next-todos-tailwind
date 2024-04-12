@@ -12,8 +12,11 @@ import {setError, setSuccess} from "@/components/Views/Table/store/actions";
 import {useTableContext} from "@/components/Views/Table/store/table-context";
 import {useState} from "react";
 import {get} from "@/lib/utils/data";
+import {Switch} from "@/components/ui/switch";
+import {Tooltip, TooltipProvider, TooltipTrigger} from "@radix-ui/react-tooltip";
+import {TooltipContent} from "@/components/ui/tooltip";
 
-const DisableAction = ({row, col, reloadData, onDelete}) => {
+const DisableAction = ({row, col, reloadData, onDelete, loggedUser}) => {
   const value = get(row, col.id)
   const [open, setOpen] = useState(false)
   const [, dispatch] = useTableContext()
@@ -31,23 +34,36 @@ const DisableAction = ({row, col, reloadData, onDelete}) => {
     setOpen(false)
   }
 
+  const isCurrentUser = loggedUser?.id === row.id
+  const disabled = !loggedUser.isAdmin || isCurrentUser
+  const tooltipMessage = isCurrentUser
+    ? "You can't disable yourself"
+    : !loggedUser.isAdmin ? "You don't have rights" : null
+
   return (
     <>
-      <label className="inline-flex items-center me-5 cursor-pointer">
-        <input
-          type="checkbox"
-          className="sr-only peer"
+      {disabled ? (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Switch
+                checked={value}
+                onChange={value ? () => setOpen(true) : handleConfirm}
+                disabled={disabled}
+                className="disabled:bg-gray-300 dark:disabled:bg-gray-50"
+              />
+            </TooltipTrigger>
+            <TooltipContent>
+              {tooltipMessage}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      ) : (
+        <Switch
           checked={value}
           onChange={value ? () => setOpen(true) : handleConfirm}
         />
-        {!value ? (
-          <div
-            className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600"/>
-        ) : (
-          <div
-            className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"/>
-        )}
-      </label>
+      )}
 
       <AlertDialog open={open}>
         <AlertDialogContent>
