@@ -13,7 +13,7 @@ export default function Fields({user}) {
   return (
     <div className="flex lg:space-x-4 flex-wrap lg:flex-nowrap">
       <div className="w-full flex flex-col">
-        <div className="flex space-x-2">
+        <div className="flex flex-col lg:flex-row lg:space-x-4">
           <FormField
             name="title"
             label="Title"
@@ -25,7 +25,7 @@ export default function Fields({user}) {
             label="Project"
             getOptions={getProjectSelectOptions}
             required
-            className={"max-w-[180px]"}
+            className={"lg:max-w-[180px]"}
             component={SelectField}/>
         </div>
 

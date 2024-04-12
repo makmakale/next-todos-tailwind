@@ -1,20 +1,19 @@
 import {Button} from "@/components/ui/button";
 import {useRouter} from "next/navigation";
 import {useFormikContext} from "formik";
-import {setDetails, setError} from "@/components/Views/Detail/store/actions";
+import {setDetails, setError, toggleLoading} from "@/components/Views/Detail/store/actions";
 import {useDetailsContext} from "@/components/Views/Detail/store/details-context";
-import {setSuccess} from "@/components/Views/Table/store/actions";
 
 const Actions = () => {
   const router = useRouter()
   const [{submitAction}, dispatch] = useDetailsContext()
-  const {values, dirty, initialValues, isValid} = useFormikContext();
+  const {values, dirty, isValid} = useFormikContext();
 
   const handleSubmit = async (mode) => {
-    const {data: actionData, success, error} = await submitAction(values)
+    dispatch(toggleLoading(true))
+    const {data: actionData, error} = await submitAction(values)
     if (actionData) {
       dispatch(setDetails(actionData))
-      dispatch(setSuccess(success))
       if (mode === 'save&close') {
         router.replace('/tasks')
       } else {

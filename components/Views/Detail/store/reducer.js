@@ -1,7 +1,7 @@
 import {CLEAR_MESSAGES, SET_DETAILS, SET_ERROR, SET_LOADING, SET_SUCCESS,} from '@/components/Views/Detail/store/types';
 
 export const initialValues = {
-  isLoading: true,
+  isLoading: false,
   details: null,
   error: '',
   success: '',

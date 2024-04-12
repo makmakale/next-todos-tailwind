@@ -20,16 +20,25 @@ export const DetailsProvider = ({pageTitle, getData, submitAction, children}) =>
   const [state, dispatch] = useReducer(detailsReducer, {...initialValues, submitAction});
 
   useEffect(() => {
-    if (getData) {
+    const fetchDetails = async () => {
       dispatch(toggleLoading(true))
-      getData().then(({data, error}) => {
+
+      try {
+        const {data, error} = await getData()
         if (data) {
           dispatch(setDetails(data))
         }
         if (error) {
           dispatch(setError(error))
         }
-      }).finally(() => dispatch(toggleLoading(false)))
+      } catch (err) {
+        console.error(err.message)
+      } finally {
+        dispatch(toggleLoading(false))
+      }
+    }
+    if (getData) {
+      fetchDetails()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
