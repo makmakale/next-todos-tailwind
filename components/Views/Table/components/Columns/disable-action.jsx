@@ -8,15 +8,19 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
-import {setError, setSuccess} from "@/components/Views/Table/store/actions";
+import {setMessage} from "@/components/Views/Table/store/actions";
 import {useTableContext} from "@/components/Views/Table/store/table-context";
 import {useState} from "react";
 import {get} from "@/lib/utils/data";
 import {Switch} from "@/components/ui/switch";
 import {Tooltip, TooltipProvider, TooltipTrigger} from "@radix-ui/react-tooltip";
 import {TooltipContent} from "@/components/ui/tooltip";
+import {useSession} from "next-auth/react";
 
-const DisableAction = ({row, col, reloadData, onDelete, loggedUser}) => {
+const DisableAction = ({row, col, reloadData, onDelete}) => {
+  const {data: session} = useSession()
+  const loggedUser = session?.user
+
   const value = get(row, col.id)
   const [open, setOpen] = useState(false)
   const [, dispatch] = useTableContext()
@@ -25,11 +29,11 @@ const DisableAction = ({row, col, reloadData, onDelete, loggedUser}) => {
     const {success, error} = await onDelete(row.id)
 
     if (success && reloadData) {
-      dispatch(setSuccess(success))
+      dispatch(setMessage('success', success))
       reloadData()
     }
     if (error) {
-      dispatch(setError(error))
+      dispatch(setMessage('error', error))
     }
     setOpen(false)
   }

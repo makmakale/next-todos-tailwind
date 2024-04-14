@@ -1,8 +1,7 @@
 'use client';
 import {createContext, useContext, useEffect, useReducer} from 'react';
 import detailsReducer, {initialValues} from '@/components/Views/Detail/store/reducer';
-import {setDetails, setError, toggleLoading} from "@/components/Views/Detail/store/actions";
-import PageTitle from "@/components/Views/Table/components/page-title";
+import {loadData, loadOptions} from "@/components/Views/Detail/store/actions";
 
 const DetailsContext = createContext();
 
@@ -16,39 +15,30 @@ export const useDetailsContext = () => {
   return context;
 };
 
-export const DetailsProvider = ({pageTitle, getData, submitAction, children}) => {
-  const [state, dispatch] = useReducer(detailsReducer, {...initialValues, submitAction});
+export const DetailsProvider = ({config, children}) => {
+  const {submitAction = null} = config
+  const [state, dispatch] = useReducer(detailsReducer, {
+    ...initialValues,
+    submitAction
+  });
 
   useEffect(() => {
-    const fetchDetails = async () => {
-      dispatch(toggleLoading(true))
-
-      try {
-        const {data, error} = await getData()
-        if (data) {
-          dispatch(setDetails(data))
-        }
-        if (error) {
-          dispatch(setError(error))
-        }
-      } catch (err) {
-        console.error(err.message)
-      } finally {
-        dispatch(toggleLoading(false))
-      }
-    }
-    if (getData) {
-      fetchDetails()
+    if (!state.data && Object.hasOwn(config, 'getData')) {
+      loadData(dispatch, config.getData)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [state.data, config])
+
+  useEffect(() => {
+    if (!state.options && Object.hasOwn(config, 'getOptions')) {
+      loadOptions(dispatch, config.getOptions)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.options, config])
 
   return (
     <DetailsContext.Provider value={[state, dispatch]}>
-      <div className={'w-full h-full p-10'}>
-        <PageTitle title={pageTitle}/>
-        {children}
-      </div>
+      {children}
     </DetailsContext.Provider>
   );
 };

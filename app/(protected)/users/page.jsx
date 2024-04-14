@@ -1,8 +1,6 @@
-import Table from "@/app/(protected)/users/_views/table";
-import {getSessionUser} from "@/lib/utils/users";
+import TableView from "@/components/Views/Table";
+import {ROUTES} from "@/lib/utils/constants/routes";
 
-export default async function UsersPage() {
-  const user = await getSessionUser()
-
-  return <Table user={user}/>
+export default async function Page() {
+  return <TableView route={ROUTES.users}/>
 }

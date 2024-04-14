@@ -6,7 +6,7 @@ import {setPageIndex, setPageSize} from "@/components/Views/Table/store/actions"
 import {ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight,} from 'lucide-react';
 
 function TablePagination() {
-  const [{page, rowsPerPage, total}, dispatch] = useTableContext()
+  const [{page, rowsPerPage, total, isLoading}, dispatch] = useTableContext()
   const countPages = Math.ceil(total / rowsPerPage) || 1
 
   const getCanPreviousPage = () => {
@@ -15,6 +15,8 @@ function TablePagination() {
   const getCanNextPage = () => {
     return page + 1 <= countPages - 1
   }
+
+  if (isLoading) return null
 
   return (
     <div className="flex items-center space-x-6 lg:space-x-8 mt-4">

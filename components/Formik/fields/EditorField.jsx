@@ -1,12 +1,12 @@
 'use client'
 import {useMemo, useState} from 'react'
-import dynamic from 'next/dynamic'
 import {cn} from "@/lib/utils/utils";
 import {Button} from "@/components/ui/button";
 import FormControl from "@/components/Formik/common/FormControl";
 import FormLabel from "@/components/Formik/common/FormLabel";
 import FormHelperText from "@/components/Formik/common/FormHelperText";
 import '@/styles/editor.css'
+import dynamic from "next/dynamic";
 
 const modules = {
   toolbar: [

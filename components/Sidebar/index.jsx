@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import {BookCopy, Columns3, LayoutDashboard, LayoutList, ListOrdered, SendToBack, Users} from 'lucide-react';
+import {ROUTES} from "@/lib/utils/constants/routes";
 
 const menuItems = [
   {
@@ -17,7 +18,7 @@ const menuItems = [
         icon: BookCopy
       },
       {
-        link: '/tasks',
+        link: ROUTES.tasks,
         text: 'Tasks',
         icon: ListOrdered
       },
@@ -53,7 +54,7 @@ const menuItems = [
 
 const Sidebar = () => {
   return (
-    <div>
+    <div className="w-[300px]">
       {menuItems.map((menu, key) => {
         if (menu.group) {
           return (

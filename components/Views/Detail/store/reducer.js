@@ -1,8 +1,16 @@
-import {CLEAR_MESSAGES, SET_DETAILS, SET_ERROR, SET_LOADING, SET_SUCCESS,} from '@/components/Views/Detail/store/types';
+import {
+  CLEAR_MESSAGES,
+  SET_DATA,
+  SET_ERROR,
+  SET_LOADING,
+  SET_OPTIONS,
+  SET_SUCCESS
+} from '@/components/Views/Detail/store/types';
 
 export const initialValues = {
   isLoading: false,
-  details: null,
+  data: null,
+  options: null,
   error: '',
   success: '',
   submitAction: () => {}
@@ -15,8 +23,11 @@ function detailsReducer(state, action) {
     case SET_LOADING:
       return {...state, isLoading: payload};
 
-    case SET_DETAILS:
-      return {...state, details: payload};
+    case SET_DATA:
+      return {...state, data: payload};
+
+    case SET_OPTIONS:
+      return {...state, options: payload};
 
     case SET_ERROR:
       return {...state, error: payload, success: ''};
