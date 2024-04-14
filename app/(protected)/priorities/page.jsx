@@ -1,5 +1,6 @@
-import Table from "@/app/(protected)/priorities/_views/table";
+import TableView from "@/components/Views/Table";
+import {ROUTES} from "@/lib/utils/constants/routes";
 
-export default async function PrioritiesPage() {
-  return <Table/>
+export default async function Page() {
+  return <TableView route={ROUTES.priorities}/>
 }

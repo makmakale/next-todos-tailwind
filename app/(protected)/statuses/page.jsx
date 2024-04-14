@@ -1,5 +1,6 @@
-import Table from "@/app/(protected)/statuses/_views/table";
+import TableView from "@/components/Views/Table";
+import {ROUTES} from "@/lib/utils/constants/routes";
 
-export default async function StatusesPage() {
-  return <Table/>
+export default async function Page() {
+  return <TableView route={ROUTES.statuses}/>
 }

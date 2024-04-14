@@ -1,21 +1,20 @@
 import {
-  CLEAR_MESSAGES,
+  CLEAR_MESSAGE,
   SET_DATA,
-  SET_ERROR,
   SET_LOADING,
+  SET_MESSAGE,
   SET_PAGE_INDEX,
   SET_PAGE_SIZE,
-  SET_SEARCH_VALUE,
-  SET_SUCCESS,
+  SET_SEARCH_VALUE
 } from '@/components/Views/Table/store/types';
-import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from '@/lib/constants';
+import {DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE} from '@/lib/constants';
 
 export const initialValues = {
   isLoading: true,
+  getData: null,
   rows: [],
   total: 0,
-  error: '',
-  success: '',
+  message: null,
   searchValue: '',
   page: DEFAULT_PAGE_INDEX,
   rowsPerPage: DEFAULT_PAGE_SIZE,
@@ -31,17 +30,14 @@ function tableReducer(state, action) {
     case SET_DATA:
       return {...state, rows: payload.rows, total: payload.count};
 
-    case SET_ERROR:
-      return {...state, error: payload, success: ''};
+    case SET_MESSAGE:
+      return {...state, error: payload, message: {...payload}};
 
-    case SET_SUCCESS:
-      return {...state, success: payload, error: ''};
+    case CLEAR_MESSAGE:
+      return {...state, error: payload, message: null};
 
     case SET_SEARCH_VALUE:
       return {...state, searchValue: payload};
-
-    case CLEAR_MESSAGES:
-      return {...state, success: '', error: ''};
 
     case SET_PAGE_SIZE:
       return {...state, rowsPerPage: payload};

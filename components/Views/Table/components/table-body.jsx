@@ -1,54 +1,38 @@
+'use client'
 import {TableBody as TBody, TableCell, TableRow,} from '@/components/ui/table';
 import {cn} from '@/lib/utils/utils';
-import {Button} from '@/components/ui/button';
-import Link from 'next/link';
 import {useTableContext} from '@/components/Views/Table/store/table-context';
 import {get} from '@/lib/utils/data';
+import {LoaderIcon} from "lucide-react";
+import EditLink from "@/components/ui/edit-link";
 
-const TableBody = ({columns, loadData, onDelete, setDefault}) => {
-  const [state] = useTableContext();
+const TableBody = (props) => {
+  const {columns, ...rest} = props;
+  const [{rows, page, rowsPerPage, isLoading}] = useTableContext();
 
   return (
     <TBody>
-      {state.rows.length > 0 ? (
-        state.rows.map((row, index) => {
+      {rows.length > 0 ? (
+        rows.map((row, index) => {
           return (
             <TableRow key={row.id}>
               <TableCell>
-                {state.page * state.rowsPerPage + index + 1}
+                {page * rowsPerPage + index + 1}
               </TableCell>
-              
+
               {columns.map((col) => {
                 if (col.renderValue) {
                   const Comp = col.renderValue;
                   return (
-                    <TableCell
-                      key={col.id}
-                      className={cn(col.align && `text-${col.align}`)}
-                    >
-                      <Comp
-                        row={row}
-                        col={col}
-                        reloadData={loadData}
-                        onDelete={onDelete}
-                        setDefault={setDefault}
-                      />
+                    <TableCell key={col.id} align={col.align}>
+                      <Comp row={row} col={col} {...rest}/>
                     </TableCell>
                   );
                 }
 
                 return (
-                  <TableCell
-                    key={col.id}
-                    className={cn(col.align && `text-${col.align}`)}
-                  >
-                    {col.link ? (
-                      <Button variant="link" asChild className="px-0">
-                        <Link href={`${col.link}/${row.id}`}>
-                          {get(row, col.id)}
-                        </Link>
-                      </Button>
-                    ) : get(row, col.id)}
+                  <TableCell key={col.id} align={col.align}>
+                    {col.isLink ? <EditLink id={row.id} title={get(row, col.id)}/> : get(row, col.id)}
                   </TableCell>
                 );
               })}
@@ -58,10 +42,10 @@ const TableBody = ({columns, loadData, onDelete, setDefault}) => {
       ) : (
         <TableRow>
           <TableCell
-            colSpan={columns.length}
+            colSpan={columns.length + 1}
             className={cn('h-16 text-center')}
           >
-            {state.isLoading ? 'Loading data...' : 'No results.'}
+            {isLoading ? <LoaderIcon className="animate-spin mx-auto"/> : 'No results.'}
           </TableCell>
         </TableRow>
       )}

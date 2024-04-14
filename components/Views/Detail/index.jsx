@@ -1,60 +1,60 @@
 'use client'
 import Form from '@/components/Formik/Form';
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from '@/components/ui/card';
-import {Button} from '@/components/ui/button';
-import {useRouter} from "next/navigation";
 import FormMessage from "@/components/ui/form-message";
 import {useDetailsContext} from "@/components/Views/Detail/store/details-context";
 import {clearMessages} from "@/components/Views/Detail/store/actions";
-import {Loader2} from "lucide-react";
+import PageTitle from "@/components/Views/Table/components/page-title";
+import Loader from "@/components/Views/Detail/components/Loader";
+import FormActions from "@/components/Views/Detail/components/FormActions";
 
 const DetailsView = ({
+  config,
   initialValues,
-  validationSchema,
-  onSubmit,
   formTitle,
-  actions,
   children,
 }) => {
-  const router = useRouter()
+  const {
+    pageTitle,
+    validationSchema,
+    redirectPath
+  } = config
+
   const [{isLoading, error, success}, dispatch] = useDetailsContext()
 
-  if (isLoading) return <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-
   return (
-    <Form
-      enableReinitialize
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      <FormMessage
-        variant={success ? 'success' : 'error'}
-        message={success || error}
-        onClose={() => dispatch(clearMessages())}
-      />
+    <div className={'w-full h-full p-10'}>
+      <PageTitle title={pageTitle}/>
 
-      <div className="w-full flex space-x-2">
-        <Card className="flex-grow-[4]">
-          <CardHeader>
-            {!!formTitle && <CardTitle>{formTitle}</CardTitle>}
-          </CardHeader>
+      <Form
+        enableReinitialize
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+      >
+        <FormMessage
+          variant={success ? 'success' : 'error'}
+          message={success || error}
+          onClose={() => dispatch(clearMessages())}
+        />
 
-          <CardContent>
-            {children}
-          </CardContent>
+        <div className="w-full flex space-x-2">
+          {isLoading ? <Loader/> :
+            <Card className="flex-grow-[4]">
+              <CardHeader>
+                {!!formTitle && <CardTitle>{formTitle}</CardTitle>}
+              </CardHeader>
 
-          <CardFooter className="space-x-2">
-            {actions ? actions : (
-              <>
-                <Button type="button" variant="outline" onClick={() => router.back()}>Cancel</Button>
-                <Button type="submit">Submit</Button>
-              </>
-            )}
-          </CardFooter>
-        </Card>
-      </div>
-    </Form>
+              <CardContent>
+                {children}
+              </CardContent>
+
+              <CardFooter className="space-x-2">
+                <FormActions path={redirectPath}/>
+              </CardFooter>
+            </Card>}
+        </div>
+      </Form>
+    </div>
   );
 };
 

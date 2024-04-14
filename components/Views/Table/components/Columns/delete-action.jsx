@@ -12,7 +12,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import {setError, setSuccess} from "@/components/Views/Table/store/actions";
+import {setMessage} from "@/components/Views/Table/store/actions";
 import {useTableContext} from "@/components/Views/Table/store/table-context";
 
 const DeleteAction = ({row, reloadData, onDelete}) => {
@@ -21,11 +21,11 @@ const DeleteAction = ({row, reloadData, onDelete}) => {
   const handleConfirm = async () => {
     const {success, error} = await onDelete(row.id)
     if (success && reloadData) {
-      dispatch(setSuccess(success))
+      dispatch(setMessage('success', success))
       reloadData()
     }
     if (error) {
-      dispatch(setError(error))
+      dispatch(setMessage('error', error))
     }
   }
 

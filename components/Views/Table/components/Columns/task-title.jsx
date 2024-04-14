@@ -1,7 +1,6 @@
 import {get} from "@/lib/utils/data";
 import {Badge} from "@/components/ui/badge";
-import Link from "next/link";
-import {Button} from "@/components/ui/button";
+import EditLink from "@/components/ui/edit-link";
 
 const TaskTitle = ({row, col}) => {
   const label = get(row, 'type.title')
@@ -13,11 +12,8 @@ const TaskTitle = ({row, col}) => {
   return (
     <div className="space-x-2">
       {label && <Badge variant="outline" className="text-white" style={{backgroundColor: bg}}>{label}</Badge>}
-      <Button variant="link" asChild className="px-0">
-        <Link href={`${col.link}/${row.id}`} className="max-w-[500px] truncate font-medium" prefetch>
-          {taskTitle}
-        </Link>
-      </Button>
+
+      <EditLink id={row.id} title={taskTitle}/>
     </div>
   )
 }

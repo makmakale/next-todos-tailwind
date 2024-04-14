@@ -1,5 +1,6 @@
-import Table from "@/app/(protected)/projects/_views/table";
+import TableView from "@/components/Views/Table";
+import {ROUTES} from "@/lib/utils/constants/routes";
 
-export default async function ProjectsPage() {
-  return <Table/>
+export default async function Page() {
+  return <TableView route={ROUTES.projects}/>
 }

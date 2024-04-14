@@ -33,7 +33,7 @@ const InputField = ({
 
   return (
     <FormControl className={className}>
-      <FormLabel label={label} id={id} isError={isError}/>
+      <FormLabel label={label} id={id} isError={isError} required={required}/>
 
       <div className="relative flex">
         <Input

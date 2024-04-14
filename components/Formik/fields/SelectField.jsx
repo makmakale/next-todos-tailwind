@@ -2,16 +2,14 @@
 
 import {cn} from '@/lib/utils/utils';
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select';
-import {useEffect, useState, useTransition} from 'react';
-import {Loader2} from 'lucide-react';
+import {useEffect, useState} from 'react';
 import FormControl from "@/components/Formik/common/FormControl";
 import FormLabel from "@/components/Formik/common/FormLabel";
 import FormHelperText from "@/components/Formik/common/FormHelperText";
 
 const SelectField = ({
-  label = 'Unknown',
+  label,
   options,
-  getOptions,
   helperText,
   required,
   className,
@@ -27,50 +25,43 @@ const SelectField = ({
   const error = isError && errors[name];
 
   const [localOptions, setOptions] = useState(options || []);
-  const [isLoading, startTransition] = useTransition();
-  const [fetchError, setFetchError] = useState('');
+
+  useEffect(() => {
+    if (!options || localOptions.length > 0) return
+    setOptions(options)
+  }, [options, localOptions])
+
+  const getOptionLabel = val => localOptions.find(item => item.value == val)?.label || ''
 
   const onValueChange = selectedValue => {
     setFieldValue(name, `${selectedValue}`);
   };
 
   useEffect(() => {
-    if (getOptions && !localOptions.length) {
-      startTransition(async () => {
-        const {data, error} = await getOptions();
+    if (localOptions.length === 0) return
 
-        if (data) {
-          setOptions(data);
-
-          if (!value) {
-            const defaultValue = data.find(opt => opt.isDefault)?.value || '';
-            onValueChange(defaultValue);
-          }
-        }
-
-        if (error) {
-          setFetchError(error);
-        }
-      });
+    if (!value) {
+      const defaultValue = localOptions.find(opt => opt.isDefault)?.value || '';
+      onValueChange(defaultValue);
     }
-  }, [getOptions, localOptions.length, name, value]);
+    // eslint-disable-next-line
+  }, [localOptions, value])
 
   return (
     <FormControl className={className}>
-      <FormLabel label={label} id={id} isError={isError}/>
+      <FormLabel label={label} id={id} isError={isError} required={required}/>
 
       <div className="relative flex">
         <Select
-          value={`${value}`}
+          defaultValue={value}
           onValueChange={onValueChange}
           required={required}
         >
           <RenderSelectTrigger
             id={id}
             name={name}
-            isLoading={isLoading}
-            value={value}
-            error={fetchError || error}
+            value={getOptionLabel(value)}
+            error={error}
           />
 
           <SelectContent side="bottom">
@@ -86,13 +77,13 @@ const SelectField = ({
       </div>
 
       <FormHelperText show={isError || helperText} isError={isError}>
-        {error || helperText}
+        {helperText}
       </FormHelperText>
     </FormControl>
   );
 };
 
-function RenderSelectTrigger({id, name, error, isLoading, value}) {
+function RenderSelectTrigger({id, name, error, value}) {
   if (!!error) {
     return (
       <p className={cn('w-full text-left')}>
@@ -107,10 +98,7 @@ function RenderSelectTrigger({id, name, error, isLoading, value}) {
       name={name}
       className={cn(error && 'text-destructive')}
     >
-      {isLoading
-        ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-        : <SelectValue placeholder={value}/>
-      }
+      <SelectValue placeholder={value}/>
     </SelectTrigger>
   )
 }
