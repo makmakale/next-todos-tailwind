@@ -82,7 +82,7 @@ function MenuItem({item}) {
 
   return (
     <li className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-700">
-      <Link className="w-full flex items-center space-x-4 px-6 py-4" href={item.link}>
+      <Link className="w-full flex items-center space-x-4 px-6 py-4" href={item.link} prefetch>
         {Icon && <Icon className="h-5 w-5 text-gray-500 dark:text-gray-400"/>}
         <span className="text-sm font-medium">{item.text}</span>
       </Link>
