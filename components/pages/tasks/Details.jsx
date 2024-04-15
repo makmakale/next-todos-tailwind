@@ -4,7 +4,7 @@ import {useDetailsContext} from "@/components/Views/Detail/store/details-context
 import Fields from "@/components/pages/tasks/Fields";
 import DetailsWrapper from "@/components/Views/Detail/components/DetailsWrapper";
 
-function Component({config, user}) {
+function Component({config, user, searchParams}) {
   const {isCreateMode} = config
   const [{data}] = useDetailsContext()
 
@@ -12,7 +12,7 @@ function Component({config, user}) {
     title: data?.title || '',
     projectId: data?.projectId || '',
     description: data?.description || '',
-    statusId: data?.statusId || '',
+    statusId: isCreateMode ? (searchParams.statusId || '') : data?.statusId,
     userId: data?.userId || '',
     typeId: data?.typeId || '',
     priorityId: data?.priorityId || '',
