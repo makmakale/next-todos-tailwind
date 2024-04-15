@@ -24,7 +24,7 @@ export const loadData = async (dispatch, getData) => {
     const {data, error} = await getData()
 
     if (data) dispatch(setDetails(data))
-    if (error) dispatch(setError('error', error))
+    if (error) dispatch(setError(error))
 
   } finally {
     dispatch(toggleLoading(false))
