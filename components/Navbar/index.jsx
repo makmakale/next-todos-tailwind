@@ -3,6 +3,7 @@ import Link from "next/link";
 import {ModeToggle} from "@/components/ModeToggle";
 import UserMenu from "@/components/Navbar/UserMenu";
 import {getSessionUser} from "@/lib/utils/users";
+import SideBarToggle from "@/components/Navbar/SideBarToggle";
 
 export default async function Navbar() {
   const user = await getSessionUser()
@@ -12,6 +13,7 @@ export default async function Navbar() {
       <h1 className="font-bold hidden sm:block">
         <Link href="/">{AppName}</Link>
       </h1>
+      <SideBarToggle/>
 
       <div className="ml-auto flex gap-4">
         <ModeToggle/>

@@ -38,7 +38,7 @@ export default async function RootLayout({children, auth}) {
         <div className="flex-grow flex">
           {!!session ?
             <>
-              <aside className="hidden md:block border-r border-r-gray-300 dark:border-r-gray-800">
+              <aside className="hidden lg:block border-r border-r-gray-300 dark:border-r-gray-800">
                 <Sidebar/>
               </aside>
 

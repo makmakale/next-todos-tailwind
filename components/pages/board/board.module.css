@@ -9,7 +9,7 @@
 .column {
     @apply
     w-full
-    min-w-[350px]
+    min-w-[340px]
     flex flex-col
     border
     p-2

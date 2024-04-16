@@ -2,18 +2,8 @@
 
 <img src="./public/images/preview.jpg" alt="preview" width="100%" height="auto"/>
 
-## Getting Started
+## Stack
 
-First, run the development server:
+Next.js-14, next-auth-4, tailwind, shadcn, next-themes, sequelize(postgres), formik + yup, @hello-pangea/dnd
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [https://next-todos-tw.vercel.app](https://next-todos-tw.vercel.app) with your browser to see the result.

@@ -52,9 +52,9 @@ const menuItems = [
   }
 ]
 
-const Sidebar = () => {
+const Sidebar = ({onClose}) => {
   return (
-    <div className="w-[300px]">
+    <div className="w-full lg:w-[300px]">
       {menuItems.map((menu, key) => {
         if (menu.group) {
           return (
@@ -64,7 +64,7 @@ const Sidebar = () => {
               </h2>
               <ul>
                 {menu.items.map((option, optionKey) =>
-                  <MenuItem key={optionKey} item={option}/>
+                  <MenuItem key={optionKey} item={option} onClick={onClose}/>
                 )}
               </ul>
             </div>
@@ -77,11 +77,11 @@ const Sidebar = () => {
   );
 };
 
-function MenuItem({item}) {
+function MenuItem({item, onClick}) {
   const Icon = item.icon
 
   return (
-    <li className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-700">
+    <li className="flex items-center hover:bg-gray-100 dark:hover:bg-gray-700" onClick={onClick}>
       <Link className="w-full flex items-center space-x-4 px-6 py-4" href={item.link} prefetch>
         {Icon && <Icon className="h-5 w-5 text-gray-500 dark:text-gray-400"/>}
         <span className="text-sm font-medium">{item.text}</span>

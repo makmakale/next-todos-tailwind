@@ -1,11 +1,11 @@
 import Link from "next/link";
 import {AppName} from "@/lib/constants";
 import getPackageVersion from "@/lib/utils/getPackageVersion";
+import styles from './footer.module.css'
 
 const Footer = () => {
   return (
-    <footer
-      className="border-t border-t-gray-300 dark:border-t-gray-800 py-1 px-3 flex justify-between items-center text-sm">
+    <footer className={styles.container}>
       <div>
         {AppName}
       </div>

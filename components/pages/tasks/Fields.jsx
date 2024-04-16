@@ -23,7 +23,7 @@ export default function Fields({user}) {
             label="Project"
             options={options?.project}
             required
-            className={"w-1/4 min-w-[180px]"}
+            className={"w-full md:w-1/4 md:min-w-[180px]"}
             component={SelectField}/>
         </div>
 

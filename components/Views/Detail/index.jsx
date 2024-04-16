@@ -23,7 +23,7 @@ const DetailsView = ({
   const [{isLoading, error, success}, dispatch] = useDetailsContext()
 
   return (
-    <div className={'w-full h-full p-10'}>
+    <div className={'w-full h-full p-4 lg:p-10'}>
       <PageTitle title={pageTitle}/>
 
       <Form
