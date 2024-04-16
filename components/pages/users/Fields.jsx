@@ -2,7 +2,7 @@ import FormField from "@/components/Formik/FormField";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import SwitchField from "@/components/Formik/fields/SwitchField";
 
-export default function Fields({isCreateMode}) {
+export default function Fields({isCreateMode, isActiveDisabled}) {
   return (
     <div className="flex lg:space-x-4 flex-wrap lg:flex-nowrap">
       <div className="w-full flex flex-col">
@@ -47,6 +47,7 @@ export default function Fields({isCreateMode}) {
               label="Status"
               mappedLabel={["Disabled", "Active"]}
               component={SwitchField}
+              disabled={isActiveDisabled}
             />
           </CardContent>
         </Card>

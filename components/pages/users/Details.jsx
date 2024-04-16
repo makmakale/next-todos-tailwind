@@ -4,7 +4,7 @@ import {useDetailsContext} from "@/components/Views/Detail/store/details-context
 import Fields from "@/components/pages/users/Fields";
 import DetailsWrapper from "@/components/Views/Detail/components/DetailsWrapper";
 
-function Component({config}) {
+function Component({config, user}) {
   const [{data}] = useDetailsContext()
 
   const initialValues = {
@@ -21,7 +21,7 @@ function Component({config}) {
       formTitle={data?.title}
       initialValues={initialValues}
     >
-      <Fields isCreateMode={config.isCreateMode}/>
+      <Fields isCreateMode={config.isCreateMode} isActiveDisabled={data?.id === user.id}/>
     </DetailsView>
   );
 }

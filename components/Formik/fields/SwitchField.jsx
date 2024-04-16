@@ -15,6 +15,7 @@ const SwitchField = ({
     touched,
     errors,
   },
+  ...props
 }) => {
   const id = `${name}-form-item`;
   const isError = errors[name] && touched[name];
@@ -28,7 +29,9 @@ const SwitchField = ({
         <Switch
           id={id}
           checked={value}
-          onCheckedChange={val => setFieldValue(name, val)}/>
+          onCheckedChange={val => setFieldValue(name, val)}
+          {...props}
+        />
         <Label htmlFor={id}>{mappedLabel[Number(value)]}</Label>
       </div>
 
