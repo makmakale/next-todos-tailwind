@@ -1,7 +1,7 @@
 'use client'
 import DetailsView from "@/components/Views/Detail";
 import {useDetailsContext} from "@/components/Views/Detail/store/details-context";
-import Fields from "@/components/pages/projects/Fields";
+import Fields from "@/components/pages/types/Fields";
 import DetailsWrapper from "@/components/Views/Detail/components/DetailsWrapper";
 
 function Component({config}) {

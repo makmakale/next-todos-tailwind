@@ -1,6 +1,7 @@
 import FormField from "@/components/Formik/FormField";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import SwitchField from "@/components/Formik/fields/SwitchField";
+import ColorChooseField from "@/components/Formik/fields/ColorChooseField";
 
 export default function Fields() {
   return (
@@ -40,6 +41,18 @@ export default function Fields() {
               mappedLabel={["No", "Yes"]}
               helperText={"Display create button in the board column."}
               component={SwitchField}
+            />
+
+            <FormField
+              name="bgColor"
+              label="Background Color"
+              component={ColorChooseField}
+            />
+
+            <FormField
+              name="textColor"
+              label="Text Color"
+              component={ColorChooseField}
             />
           </CardContent>
         </Card>

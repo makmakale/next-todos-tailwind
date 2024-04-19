@@ -1,6 +1,7 @@
 import FormField from "@/components/Formik/FormField";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import SwitchField from "@/components/Formik/fields/SwitchField";
+import ColorChooseField from "@/components/Formik/fields/ColorChooseField";
 
 export default function Fields() {
   return (
@@ -32,10 +33,16 @@ export default function Fields() {
 
           <CardContent>
             <FormField
+              name="color"
+              label="Color"
+              component={ColorChooseField}
+            />
+
+            <FormField
               name="isDefault"
-              label="Default project"
+              label="Default type"
               mappedLabel={["No", "Yes"]}
-              helperText={"Default project will be set in selects for new items."}
+              helperText={"Default type will be set in selects for new items."}
               component={SwitchField}
             />
           </CardContent>

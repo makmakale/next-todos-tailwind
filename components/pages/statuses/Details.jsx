@@ -12,6 +12,8 @@ function Component({config}) {
     description: data?.description || '',
     addTask: data?.addTask || false,
     isDefault: data?.isDefault || false,
+    bgColor: data?.bgColor || '#efefef',
+    textColor: data?.textColor || '#222',
   }
 
   return (
