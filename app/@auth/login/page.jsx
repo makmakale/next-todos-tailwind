@@ -6,7 +6,7 @@ import {signIn} from "next-auth/react";
 import {useState, useTransition} from "react";
 import {LoginSchema} from "@/lib/form/validation";
 import Form from "@/components/Formik/Form";
-import FormMessage from "@/components/Formik/FormMessage";
+import FormMessage from "@/components/ui/form-message";
 import FormField from "@/components/Formik/FormField";
 
 const initialValues = {
@@ -54,7 +54,17 @@ export default function Page() {
           validationSchema={LoginSchema}
           onSubmit={onSubmit}
         >
-          <FormMessage message={error}/>
+
+          <FormMessage variant="primary" message={(
+            <div>
+              <div>Default users:</div>
+              <div>
+                <p>Username: admin | user</p>
+                <p>Password: admin | user</p>
+              </div>
+            </div>
+          )}/>
+          <FormMessage variant={'error'} message={error}/>
 
           <FormField
             name="username"

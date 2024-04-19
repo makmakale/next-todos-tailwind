@@ -5,7 +5,7 @@ import {useRouter} from "next/navigation";
 import {useState, useTransition} from "react";
 import {RegisterSchema} from "@/lib/form/validation";
 import Form from "@/components/Formik/Form";
-import FormMessage from "@/components/Formik/FormMessage";
+import FormMessage from "@/components/ui/form-message";
 import FormField from "@/components/Formik/FormField";
 import {createUser} from "@/lib/actions/users";
 
@@ -46,7 +46,7 @@ export default function Page() {
           validationSchema={RegisterSchema}
           onSubmit={onSubmit}
         >
-          <FormMessage message={error}/>
+          <FormMessage variant={'error'} message={error}/>
 
           <FormField
             name="username"
