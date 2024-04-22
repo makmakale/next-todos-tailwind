@@ -4,8 +4,9 @@ import EditorField from '@/components/Formik/fields/EditorField'
 import SelectField from '@/components/Formik/fields/SelectField'
 import UserWithAvatarField from '@/components/Formik/fields/UserWithAvatarField'
 import {useDetailsContext} from "@/components/Views/Detail/store/details-context";
+import SubTasks from "@/components/pages/tasks/SubTasks";
 
-export default function Fields({user}) {
+export default function Fields({user, showSubtasks}) {
   const [{options}] = useDetailsContext()
 
   return (
@@ -33,6 +34,8 @@ export default function Fields({user}) {
           className="w-full flex-grow mb-0"
           component={EditorField}
         />
+
+        <SubTasks show={showSubtasks}/>
       </div>
 
       <div className="w-full lg:max-w-[350px]">

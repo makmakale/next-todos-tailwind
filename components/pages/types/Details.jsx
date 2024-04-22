@@ -13,6 +13,7 @@ function Component({config}) {
     description: data?.description || '',
     color: data?.color || '#3192e7',
     isDefault: data?.isDefault || false,
+    subtasksAllowed: data?.subtasksAllowed || false,
   }
 
   return (

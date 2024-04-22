@@ -5,7 +5,7 @@ import Fields from "@/components/pages/tasks/Fields";
 import DetailsWrapper from "@/components/Views/Detail/components/DetailsWrapper";
 
 function Component({config, user, searchParams}) {
-  const {isCreateMode} = config
+  const {isCreateMode, isEditMode} = config
   const [{data}] = useDetailsContext()
 
   const initialValues = {
@@ -19,13 +19,17 @@ function Component({config, user, searchParams}) {
     createdBy: isCreateMode ? user.id : data?.createdBy
   }
 
+
   return (
     <DetailsView
       config={config}
       formTitle={data?.title}
       initialValues={initialValues}
     >
-      <Fields user={isCreateMode ? user : data?.reporter}/>
+      <Fields
+        user={isCreateMode ? user : data?.reporter}
+        showSubtasks={isEditMode && data?.type?.subtasksAllowed && !data?.parentId}
+      />
     </DetailsView>
   );
 }

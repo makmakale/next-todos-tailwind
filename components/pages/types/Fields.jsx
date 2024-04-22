@@ -45,6 +45,13 @@ export default function Fields() {
               helperText={"Default type will be set in selects for new items."}
               component={SwitchField}
             />
+
+            <FormField
+              name="subtasksAllowed"
+              label="Allowe create subtasks"
+              mappedLabel={["No", "Yes"]}
+              component={SwitchField}
+            />
           </CardContent>
         </Card>
       </div>

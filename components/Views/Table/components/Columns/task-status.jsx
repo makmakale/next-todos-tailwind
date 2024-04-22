@@ -6,7 +6,7 @@ export default function TaskStatusColumn({row, col}) {
   const textColor = get(row, 'status.textColor')
 
   return (
-    <div className={'rounded-sm py-1 px-2 flex items-center w-fit uppercase font-bold text-nowrap'} style={{
+    <div className={'rounded-sm py-1 px-2 flex items-center w-fit uppercase text-xs font-bold text-nowrap'} style={{
       backgroundColor: bgColor,
       color: textColor,
     }}>
