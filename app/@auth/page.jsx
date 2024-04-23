@@ -1,6 +1,7 @@
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import todosImg from '@/public/images/todos.jpeg'
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
       </h1>
       <div className="relative">
         <Image
-          src={'/images/todos.jpeg'}
+          src={todosImg}
           alt={"To Do"}
           width={800}
           height={0}
