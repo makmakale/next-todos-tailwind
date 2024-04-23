@@ -3,10 +3,14 @@
     @apply border-input;
 }
 
-.ql-snow .ql-formats > * {
+.ql-snow .ql-formats .ql-picker-label {
     @apply text-card-foreground;
 }
 
 .ql-snow .ql-stroke {
     @apply stroke-card-foreground;
+}
+
+.ql-snow .ql-fill {
+    @apply fill-card-foreground;
 }

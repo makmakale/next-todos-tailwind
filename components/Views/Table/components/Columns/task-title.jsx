@@ -10,8 +10,8 @@ const TaskTitle = ({row, col}) => {
   if (!taskTitle) return '???'
 
   return (
-    <div className="space-x-2">
-      {label && <Badge variant="outline" className="text-white" style={{backgroundColor: bg}}>{label}</Badge>}
+    <div className="flex items-center space-x-2">
+      {label && <Badge variant="outline" className="text-white h-fit" style={{backgroundColor: bg}}>{label}</Badge>}
 
       <EditLink id={row.id} title={taskTitle}/>
     </div>

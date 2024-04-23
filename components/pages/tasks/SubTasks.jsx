@@ -24,6 +24,7 @@ export default function SubTasks({show}) {
 
     const {data: task} = await createSubTask({
       parentId: data.id,
+      projectId: data.projectId,
     })
     setSubTasks(prev => [...prev, task])
   }
@@ -48,8 +49,9 @@ export default function SubTasks({show}) {
           </Badge>
 
           <div className="w-full">
-            <Link href={`/tasks/edit/${subTask.id}`} className="no-underline hover:underline"
-                  replace>{subTask.title}</Link>
+            <Link href={`/tasks/edit/${subTask.id}`} className="no-underline hover:underline" replace>
+              {subTask.title}
+            </Link>
           </div>
 
           <div className={'ml-auto border rounded-full py-1 px-2 flex items-center w-fit text-xs'}>

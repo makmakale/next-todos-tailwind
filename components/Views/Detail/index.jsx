@@ -49,7 +49,7 @@ const DetailsView = ({
               </CardContent>
 
               <CardFooter className="space-x-2">
-                <FormActions path={redirectPath}/>
+                <FormActions path={redirectPath} isCreateMode={config.isCreateMode}/>
               </CardFooter>
             </Card>}
         </div>

@@ -13,11 +13,11 @@ function UserAvatar({image, name}) {
 }
 
 export default function UserAvatarName({
-                                         user,
-                                         withAvatar = true,
-                                         onlyAvatar = false,
-                                         withTooltip = false,
-                                       }) {
+  user,
+  withAvatar = true,
+  onlyAvatar = false,
+  withTooltip = false,
+}) {
   const {name = 'Unassigned', image} = user || {}
 
   return (
